@@ -9,7 +9,7 @@ import { BUSINESS_SECTIONS, ORG_SECTIONS, missingRequired, type Answers, type Ma
 import { defaultChecklist, DOC_TEMPLATE, KB_TEMPLATE } from "@/lib/handoff";
 import { submitProposal } from "@/lib/proposals.functions";
 import { AnswerSummary, SectionFields } from "@/components/QuestionForm";
-import { CompletionScore } from "@/components/CompletionScore";
+import { CompletionRing, CompletionScore } from "@/components/CompletionScore";
 import { StatusPill } from "@/components/StatusPill";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

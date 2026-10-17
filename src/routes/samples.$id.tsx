@@ -4,7 +4,7 @@ import { sampleAssessments, sampleOrganizations, sampleContractors, rankedSample
 import { readinessScore, ORG_SECTIONS, BUSINESS_SECTIONS } from "@/lib/assessment";
 import { SampleShell } from "@/components/SampleShell";
 import { SampleDocuments } from "@/components/SampleDocuments";
-import { CompletionScore } from "@/components/CompletionScore";
+import { CompletionRing, CompletionScore } from "@/components/CompletionScore";
 import { StatusPill } from "@/components/StatusPill";
 import { AnswerSummary } from "@/components/QuestionForm";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
