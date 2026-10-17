@@ -35,6 +35,7 @@ function Index() {
           <p className="mt-6 max-w-xl text-lg opacity-90">Communities and organizations define what they need. Providers compete to solve it. Everyone signs off on the handoff.</p>
           <div className="mt-8 flex gap-3">
             <Button asChild size="lg" variant="secondary"><Link to="/auth">Get started</Link></Button>
+            <Button asChild size="lg" variant="secondary"><Link to="/samples">Explore sample projects</Link></Button>
           </div>
         </div>
       </section>
