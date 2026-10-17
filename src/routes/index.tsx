@@ -41,7 +41,7 @@ function Index() {
               <Button asChild size="lg" variant="secondary"><Link to="/compliance"><ShieldCheck aria-hidden="true" />AI &amp; Data Compliance</Link></Button>
             </div>
           </div>
-          <div className="justify-self-center rounded-2xl bg-background p-6 shadow-card md:justify-self-end">
+          <div className="justify-self-center md:justify-self-end">
             <img src={logoFull.url} alt="TechBridge Consulting — Your Bridge to Technology, Impact, and Success. Minneapolis, MN." className="w-72 sm:w-80 md:w-96" />
           </div>
         </div>
