@@ -11,4 +11,4 @@
 # Sample handoff documents
 - [x] Create project-specific implementation and knowledge-base examples in PDF, DOCX, XLSX, Markdown, TXT, and CSV formats.
 - [x] Show downloadable sample attachments in each sample handoff, separate from real account files.
-- [ ] Validate files, tests, and the download flow on desktop and mobile.
+- [x] Validate files, tests, and the download flow on desktop and mobile (7 tests pass; all six downloads verified; four handoffs checked; build OK).
