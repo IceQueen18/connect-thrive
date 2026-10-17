@@ -7,14 +7,27 @@ export const sampleOrganizations = [
   { id: "youth", name: "Community Youth Works", contact: "Sarah Jenkins", mission: "After-school STEM programs and youth development." },
   { id: "health", name: "Hope Health Access Initiative", contact: "Dr. Aris Thorne", mission: "Mobile vaccination and community health access." },
   { id: "legal", name: "Northside Legal Aid Clinic", contact: "David K. Chen", mission: "Housing advice and eviction prevention workshops." },
+  { id: "seniors", name: "Westside Senior Center", contact: "Rosa Delgado", mission: "Independent living support, meals and social programs for older adults." },
+  { id: "shelter", name: "Lakeside Family Shelter", contact: "Priya Raman", mission: "Emergency shelter and stability services for families with children." },
 ] as const;
 
-export const sampleContractors = [
-  { id: "maya", name: "Maya Patel", specialty: "Accessible intake systems & nonprofit CRM", years: 9, capabilities: ["data", "software", "security", "training", "website"] },
-  { id: "jordan", name: "Jordan Ellis", specialty: "Logistics automation & mobile tools", years: 7, capabilities: ["software", "data", "cloud", "training"] },
-  { id: "sofia", name: "Sofia Nguyen", specialty: "Secure cloud systems & staff training", years: 11, capabilities: ["security", "cloud", "network", "devices", "training", "data"] },
-  { id: "andre", name: "Andre Brooks", specialty: "Community websites & volunteer coordination", years: 6, capabilities: ["website", "software", "training", "cloud"] },
-  { id: "leo", name: "Leo Martinez", specialty: "Reporting, integrations & data migration", years: 8, capabilities: ["data", "software", "cloud"] },
+export interface SampleProvider {
+  id: string;
+  name: string;
+  type: "contractor" | "volunteer";
+  specialty: string;
+  years: number;
+  capabilities: string[];
+}
+
+export const sampleContractors: SampleProvider[] = [
+  { id: "maya", name: "Maya Patel", type: "contractor", specialty: "Accessible intake systems & nonprofit CRM", years: 9, capabilities: ["data", "software", "security", "training", "website"] },
+  { id: "jordan", name: "Jordan Ellis", type: "contractor", specialty: "Logistics automation & mobile tools", years: 7, capabilities: ["software", "data", "cloud", "training"] },
+  { id: "sofia", name: "Sofia Nguyen", type: "contractor", specialty: "Secure cloud systems & staff training", years: 11, capabilities: ["security", "cloud", "network", "devices", "training", "data"] },
+  { id: "andre", name: "Andre Brooks", type: "contractor", specialty: "Community websites & volunteer coordination", years: 6, capabilities: ["website", "software", "training", "cloud"] },
+  { id: "leo", name: "Leo Martinez", type: "contractor", specialty: "Reporting, integrations & data migration", years: 8, capabilities: ["data", "software", "cloud"] },
+  { id: "ruth", name: "Ruth Okafor", type: "volunteer", specialty: "Volunteer web, forms & training support for community groups", years: 14, capabilities: ["website", "data", "training", "cloud"] },
+  { id: "dan", name: "Dan Whitfield", type: "volunteer", specialty: "Weekend volunteer IT setup, devices & Wi‑Fi", years: 20, capabilities: ["devices", "network", "security", "training"] },
 ];
 
 export interface SampleProposal {
@@ -98,6 +111,17 @@ export const sampleAssessments: SampleAssessment[] = [
     id: "legal-intake", organizationId: "legal", title: "Accessible workshop booking and private legal intake", createdAt: "2026-09-18T10:05:00Z", status: "in_progress", answers: legalAnswers,
     proposals: [proposal("legal-maya", "maya", "selected", "2026-09-20T10:00:00Z", "Separate bilingual public workshop registration from restricted case intake, add retention controls and train the clinic coordinator.", 8900, 6), proposal("legal-andre", "andre", "declined", "2026-09-21T10:00:00Z", "Deliver a bilingual accessible registration website and reminder emails. Clinic staff continue managing follow-up records separately.", 5600, 5, "30")],
     handoff: handoff(legalAnswers, "Legal workshop booking and intake", true, null, "2026-10-16T14:30:00Z"),
+  },
+  {
+    id: "senior-events", organizationId: "seniors", title: "Senior center attendance and ride scheduling records", createdAt: "2026-08-20T09:30:00Z", status: "completed",
+    answers: organizationAnswers("Sign-up sheets, ride schedules and meal counts live on paper at the front desk. Volunteers spend the first hour of every program copying information by hand, and nothing is kept from month to month.", ["data", "training"], "Staff and volunteers record attendance, meals and ride requests once on a shared tablet, and the coordinator can see last month's totals without paper.", 45, { budget: "0", staff: 4, current_tools: "Paper sign-in sheets, a personal Gmail account and printed schedules.", devices_condition: 2, internet: 3, data_storage: "paper", backups: "none", security: ["antivirus"], pain_points: "No shared record of who attended and no way to plan rides ahead. The center has no technology budget, so help must be volunteered.", comfort: 1, it_person: "none", owner_after: "Program coordinator", documentation: "none", training_needs: ["basics", "security"], learning_format: "in_person", constraints: "No budget — this must be volunteered. Many participants are older adults with low vision, so screens need large text." }),
+    proposals: [proposal("senior-ruth", "ruth", "selected", "2026-08-22T10:00:00Z", "Replace the paper sheets with a large-text shared attendance and ride log on one donated tablet, plus patient in-person training for every volunteer shift.", 0, 10, "ongoing", { provider_type: "volunteer", past_work: "Fourteen years volunteering with community centers, senior programs and food shelves; set up simple attendance and scheduling records for three Minneapolis nonprofits at no cost." }), proposal("senior-dan", "dan", "declined", "2026-08-23T09:00:00Z", "Set up a donated computer, secure the guest Wi‑Fi and write a one-page guide volunteers can follow when the desk is unstaffed.", 0, 6, "30", { provider_type: "volunteer", past_work: "Twenty years in desktop support, now volunteering weekends to set up computers and Wi‑Fi for shelters, food shelves and senior centers." })],
+    handoff: handoff(seniorAnswers, "Senior center attendance and rides", true, "2026-09-14T15:10:00Z", "2026-09-13T16:00:00Z"),
+  },
+  {
+    id: "shelter-intake", organizationId: "shelter", title: "Night-shift family intake record for the shelter", createdAt: "2026-10-16T17:40:00Z", status: "published",
+    answers: organizationAnswers("Intake for families arriving at night is done on paper and a volunteer's personal laptop. Records are not shared between shifts, so a family can be asked the same questions twice and no one can see yesterday's notes.", ["data", "cloud", "training"], "Every intake is recorded once in a private shared system that night volunteers can open from the shelter's own computers, with yesterday's notes available at every shift.", 30, { budget: "0", urgency: "critical", staff: 3, current_tools: "Paper intake forms, a volunteer's personal laptop and group texts.", devices_condition: 2, internet: 3, data_storage: "personal", backups: "none", security: [], pain_points: "Shifts lose information between volunteers, and family details sit on a personal laptop with no backup and no budget to fix it.", comfort: 1, it_person: "none", owner_after: "Shelter director", documentation: "none", training_needs: ["basics", "security"], learning_format: "in_person", constraints: "No budget — this must be volunteered. Family information is sensitive and must stay off personal devices." }),
+    proposals: [proposal("shelter-ruth", "ruth", "submitted", "2026-10-17T08:30:00Z", "Build a private shared intake log on free cloud tools the shelter already qualifies for, with a large-text night-shift form and hands-on training each week.", 0, 8, "ongoing", { provider_type: "volunteer", past_work: "Fourteen years volunteering with community centers, senior programs and food shelves; set up simple attendance and scheduling records for three Minneapolis nonprofits at no cost." }), proposal("shelter-dan", "dan", "submitted", "2026-10-17T10:15:00Z", "Secure and reorganize the shelter's existing computers, move records off the personal laptop and train the night volunteers on the new setup.", 0, 12, "30", { provider_type: "volunteer", past_work: "Twenty years in desktop support, now volunteering weekends to set up computers and Wi‑Fi for shelters, food shelves and senior centers." })],
   },
   {
     id: "youth-stem", organizationId: "youth", title: "STEM program attendance and transport coordination", createdAt: "2026-10-01T16:45:00Z", status: "in_progress",

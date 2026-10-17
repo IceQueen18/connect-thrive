@@ -151,6 +151,7 @@ export const BUSINESS_SECTIONS: Section[] = [
         { value: "business", label: "Established business" },
         { value: "small_business", label: "Small business" },
         { value: "contractor", label: "Independent contractor" },
+        { value: "volunteer", label: "Volunteer (pro bono)" },
       ] },
       { id: "years", label: "Years of relevant experience", type: "number", required: true },
       { id: "capabilities", label: "Which areas can you deliver?", type: "multi", options: NEED_CATEGORIES, required: true },
