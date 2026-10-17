@@ -144,6 +144,14 @@ export const sampleAssessments: SampleAssessment[] = [
 const youthSample = sampleAssessments.find((a) => a.id === "youth-stem");
 if (youthSample) youthSample.handoff = handoff(youthSample.answers, youthSample.title, false, null, null);
 
+export function isZeroBudget(a: SampleAssessment): boolean {
+  return String(a.answers["budget"]) === "0";
+}
+
+export function fundingLabel(a: SampleAssessment): string {
+  return isZeroBudget(a) ? "No budget — pro bono" : "Paid";
+}
+
 export function rankedSampleProposals(assessment: SampleAssessment) {
   return assessment.proposals.map((p) => ({ ...p, score: matchScore(assessment.answers, p.answers, readinessScore(assessment.answers)) })).sort((a, b) => b.score.total - a.score.total);
 }
