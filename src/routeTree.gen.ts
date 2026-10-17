@@ -15,6 +15,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
 import { Route as AuthenticatedAssessNewRouteImport } from './routes/_authenticated/assess.new'
+import { Route as AuthenticatedNeedsIndexRouteImport } from './routes/_authenticated/needs.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -45,6 +46,11 @@ const AuthenticatedAssessNewRoute = AuthenticatedAssessNewRouteImport.update({
   path: '/assess/new',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedNeedsIndexRoute = AuthenticatedNeedsIndexRouteImport.update({
+  id: '/needs/',
+  path: '/needs/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
   '/assess/new': typeof AuthenticatedAssessNewRoute
+  '/needs/': typeof AuthenticatedNeedsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
   '/assess/new': typeof AuthenticatedAssessNewRoute
+  '/needs': typeof AuthenticatedNeedsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -68,12 +76,14 @@ export interface FileRoutesById {
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
   '/_authenticated/assess/new': typeof AuthenticatedAssessNewRoute
+  '/_authenticated/needs/': typeof AuthenticatedNeedsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/dashboard' | '/onboarding' | '/assess/new'
+  fullPaths:
+    '/' | '/auth' | '/dashboard' | '/onboarding' | '/assess/new' | '/needs/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/dashboard' | '/onboarding' | '/assess/new'
+  to: '/' | '/auth' | '/dashboard' | '/onboarding' | '/assess/new' | '/needs'
   id:
     | '__root__'
     | '/'
@@ -82,6 +92,7 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard'
     | '/_authenticated/onboarding'
     | '/_authenticated/assess/new'
+    | '/_authenticated/needs/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -134,6 +145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAssessNewRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/needs/': {
+      id: '/_authenticated/needs/'
+      path: '/needs'
+      fullPath: '/needs/'
+      preLoaderRoute: typeof AuthenticatedNeedsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
@@ -141,12 +159,14 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedOnboardingRoute: typeof AuthenticatedOnboardingRoute
   AuthenticatedAssessNewRoute: typeof AuthenticatedAssessNewRoute
+  AuthenticatedNeedsIndexRoute: typeof AuthenticatedNeedsIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedOnboardingRoute: AuthenticatedOnboardingRoute,
   AuthenticatedAssessNewRoute: AuthenticatedAssessNewRoute,
+  AuthenticatedNeedsIndexRoute: AuthenticatedNeedsIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
