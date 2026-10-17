@@ -57,7 +57,7 @@ function Samples() {
           {[...rows].reverse().map((a) => {
             const org = sampleOrganizations.find((o) => o.id === a.organizationId);
             return <article key={a.id} className="flex flex-col rounded-lg border bg-card p-5 shadow-card">
-              <div className="text-sm text-muted-foreground">{org?.name}</div>
+              <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground"><span>{org?.name}</span><span className={`rounded px-2 py-0.5 text-xs font-medium ${isZeroBudget(a) ? "bg-amber-500/15 text-amber-700" : "bg-secondary text-foreground"}`}>{fundingLabel(a)}</span></div>
               <h2 className="mt-2 text-xl font-semibold"><Link to="/samples/$id" params={{ id: a.id }} className="hover:text-primary">{a.title}</Link></h2>
               <p className="mt-3 text-sm text-muted-foreground">{String(a.answers["problem"])}</p>
               <div className="mt-4 flex flex-wrap gap-2">{(a.answers["categories"] as string[]).map((c) => <span key={c} className="rounded bg-secondary px-2 py-1 text-xs">{NEED_CATEGORIES.find((n) => n.value === c)?.label}</span>)}</div>
@@ -77,7 +77,7 @@ function Samples() {
               <div className="text-xs text-muted-foreground">{a.createdAt.slice(0, 10)}</div>
               <h3 className="mt-1 font-semibold"><Link to="/samples/$id" params={{ id: a.id }} className="hover:text-primary">{a.title}</Link></h3>
               <div className="mt-3 max-w-3xl"><StageBar index={stageIndex(a.status, a.proposals.length)} /></div>
-              <div className="mt-3 text-sm text-primary">{sampleStageLabel(a)} · {a.proposals.length} proposals</div>
+              <div className="mt-3 flex flex-wrap items-center gap-2 text-sm text-primary"><span>{sampleStageLabel(a)} · {a.proposals.length} proposals</span><span className={`rounded px-2 py-0.5 text-xs font-medium ${isZeroBudget(a) ? "bg-amber-500/15 text-amber-700" : "bg-secondary text-foreground"}`}>{fundingLabel(a)}</span></div>
             </li>)}
           </ol>
         </section>)}
