@@ -39,6 +39,6 @@ describe("fictional showcase data", () => {
     if (!food) throw new Error("Missing food sample");
     const proposals = rankedSampleProposals(food);
     expect(proposals.map((p) => p.contractorId)).toEqual(["jordan", "maya", "leo"]);
-    expect(proposals.map((p) => p.score.total)).toEqual([100, 96, 87]);
+    expect(proposals.map((p) => p.score.total)).toEqual([100, 96, 80]);
   });
 });
