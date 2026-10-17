@@ -9,7 +9,7 @@ import { StatusPill } from "@/components/StatusPill";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
-  head: () => ({ meta: [{ title: "Dashboard — Bridgework" }, { name: "description", content: "Your assessments, proposals and projects." }] }),
+  head: () => ({ meta: [{ title: "Dashboard — BridgeWorkSolutions" }, { name: "description", content: "Your assessments, proposals and projects." }] }),
   component: Dashboard,
 });
 

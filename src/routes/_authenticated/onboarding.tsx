@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/onboarding")({
-  head: () => ({ meta: [{ title: "Choose your account type — Bridgework" }, { name: "description", content: "Tell us whether you're an organization or a solution provider." }] }),
+  head: () => ({ meta: [{ title: "Choose your account type — BridgeWorkSolutions" }, { name: "description", content: "Tell us whether you're an organization or a solution provider." }] }),
   component: Onboarding,
 });
 
@@ -42,7 +42,7 @@ function Onboarding() {
 
   return (
     <div className="mx-auto max-w-2xl py-10">
-      <h1 className="text-3xl font-semibold">How will you use Bridgework?</h1>
+      <h1 className="text-3xl font-semibold">How will you use BridgeWorkSolutions?</h1>
       <p className="mt-2 text-muted-foreground">This can't be changed later, so pick the one that fits.</p>
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
         {opts.map((o) => (
