@@ -277,3 +277,11 @@ export function stageIndex(status: string, proposalCount: number): number {
   if (status === "draft") return 0;
   return proposalCount > 0 ? 2 : 1;
 }
+
+/** Advisory completion estimate: readiness contributes 20%, lifecycle milestones
+ * contribute 80%. Only the mutually confirmed completed status reaches 100%. */
+export function completionScore(readiness: number, status: string, proposalCount: number): number {
+  if (status === "completed") return 100;
+  const safeReadiness = Number.isFinite(readiness) ? Math.min(100, Math.max(0, readiness)) : 0;
+  return Math.round(safeReadiness * 0.2 + stageIndex(status, proposalCount) * 20);
+}

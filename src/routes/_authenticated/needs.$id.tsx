@@ -5,11 +5,11 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useMe } from "@/hooks/use-me";
-import { BUSINESS_SECTIONS, ORG_SECTIONS, missingRequired, stageIndex, type Answers, type MatchBreakdown } from "@/lib/assessment";
+import { BUSINESS_SECTIONS, ORG_SECTIONS, missingRequired, type Answers, type MatchBreakdown } from "@/lib/assessment";
 import { defaultChecklist, DOC_TEMPLATE, KB_TEMPLATE } from "@/lib/handoff";
 import { submitProposal } from "@/lib/proposals.functions";
 import { AnswerSummary, SectionFields } from "@/components/QuestionForm";
-import { StageBar } from "@/components/StageBar";
+import { CompletionScore } from "@/components/CompletionScore";
 import { StatusPill } from "@/components/StatusPill";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -54,9 +54,8 @@ function NeedPage() {
       <div className="text-sm text-muted-foreground">{n.org_name}</div>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <h1 className="text-3xl font-semibold">{n.title}</h1>
-        <div className="text-right"><span className="font-display text-3xl text-primary">{n.readiness_score}</span><span className="text-sm text-muted-foreground"> /100 readiness</span></div>
       </div>
-      <div className="mt-6 max-w-3xl"><StageBar index={stageIndex(n.status, isOwner ? list.length : 1)} /></div>
+      <CompletionScore readiness={n.readiness_score} status={n.status} proposalCount={list.length} />
       {proj && (isOwner || mine?.status === "selected") && (
         <Button asChild className="mt-6"><Link to="/projects/$id" params={{ id: proj.id }}>Open handoff workspace</Link></Button>
       )}

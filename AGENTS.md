@@ -11,6 +11,7 @@
 
 ## Architecture rules
 - Assessment questions and all scoring live in `src/lib/assessment.ts` (pure, tested); UI renders from these definitions so questions change in one place.
+- Request pages share `CompletionScore` and the pure readiness-weighted lifecycle estimate, so sample and live requests use the same scoring and presentation without persisting a second score.
 - Proposals are inserted only by the `submitProposal` server function (no client INSERT grant) so the automatic fit score can't be forged.
 - Roles live in `public.user_roles`; users may self-assign only `organization` or `business` once; `admin` is granted manually.
 - A DB trigger on `projects` restricts each party to its own confirmation, clears confirmations on content edits, and marks the assessment completed when both confirm.

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { matchScore, readinessScore, stageIndex } from "./assessment";
+import { completionScore, matchScore, readinessScore, stageIndex } from "./assessment";
 
 describe("readinessScore", () => {
   it("is 0 for an org with nothing in place", () => {
@@ -38,5 +38,27 @@ describe("stageIndex", () => {
     expect(stageIndex("published", 0)).toBe(1);
     expect(stageIndex("published", 2)).toBe(2);
     expect(stageIndex("completed", 2)).toBe(4);
+  });
+});
+
+describe("completionScore", () => {
+  it("uses readiness for 20% of the estimate", () => {
+    expect(completionScore(0, "published", 0)).toBe(20);
+    expect(completionScore(50, "published", 0)).toBe(30);
+    expect(completionScore(100, "published", 0)).toBe(40);
+  });
+  it("advances the milestone contribution as the project progresses", () => {
+    expect(completionScore(50, "draft", 0)).toBe(10);
+    expect(completionScore(50, "published", 2)).toBe(50);
+    expect(completionScore(50, "in_progress", 2)).toBe(70);
+  });
+  it("reserves 100% for a mutually confirmed completed project regardless of starting readiness", () => {
+    expect(completionScore(100, "in_progress", 2)).toBe(80);
+    expect(completionScore(0, "completed", 2)).toBe(100);
+  });
+  it("clamps invalid readiness values", () => {
+    expect(completionScore(-50, "published", 0)).toBe(20);
+    expect(completionScore(200, "published", 0)).toBe(40);
+    expect(completionScore(NaN, "published", 0)).toBe(20);
   });
 });
