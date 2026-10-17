@@ -300,5 +300,77 @@ export const sampleDocuments: SampleDocument[] = [
     "sizeBytes": 1673,
     "status": "Awaiting organization review",
     "description": "Structured articles for importing into a knowledge-base tool."
+  },
+  {
+    "id": "senior-events-implementation-pdf",
+    "assessmentId": "senior-events",
+    "kind": "implementation",
+    "title": "Implementation guide",
+    "format": "PDF",
+    "fileName": "implementation-guide.pdf",
+    "url": "/sample-documents/senior-events/implementation-guide.pdf",
+    "sizeBytes": 2396,
+    "status": "Completed sample",
+    "description": "Scope, configuration, validation and handoff status."
+  },
+  {
+    "id": "senior-events-implementation-docx",
+    "assessmentId": "senior-events",
+    "kind": "implementation",
+    "title": "Configuration runbook",
+    "format": "DOCX",
+    "fileName": "configuration-runbook.docx",
+    "url": "/sample-documents/senior-events/configuration-runbook.docx",
+    "sizeBytes": 37236,
+    "status": "Completed sample",
+    "description": "Editable system setup and ownership notes."
+  },
+  {
+    "id": "senior-events-implementation-xlsx",
+    "assessmentId": "senior-events",
+    "kind": "implementation",
+    "title": "Acceptance checklist",
+    "format": "XLSX",
+    "fileName": "acceptance-checklist.xlsx",
+    "url": "/sample-documents/senior-events/acceptance-checklist.xlsx",
+    "sizeBytes": 5451,
+    "status": "Completed sample",
+    "description": "Example validation tasks, reviewers and review status."
+  },
+  {
+    "id": "senior-events-knowledge-base-md",
+    "assessmentId": "senior-events",
+    "kind": "knowledge-base",
+    "title": "Knowledge-base articles",
+    "format": "MD",
+    "fileName": "knowledge-base.md",
+    "url": "/sample-documents/senior-events/knowledge-base.md",
+    "sizeBytes": 1112,
+    "status": "Completed sample",
+    "description": "Portable Markdown quick-start, maintenance and support articles."
+  },
+  {
+    "id": "senior-events-knowledge-base-txt",
+    "assessmentId": "senior-events",
+    "kind": "knowledge-base",
+    "title": "Staff quick-start guide",
+    "format": "TXT",
+    "fileName": "quick-start.txt",
+    "url": "/sample-documents/senior-events/quick-start.txt",
+    "sizeBytes": 748,
+    "status": "Completed sample",
+    "description": "Plain-text daily tasks and safe escalation steps."
+  },
+  {
+    "id": "senior-events-knowledge-base-csv",
+    "assessmentId": "senior-events",
+    "kind": "knowledge-base",
+    "title": "Troubleshooting index",
+    "format": "CSV",
+    "fileName": "troubleshooting-index.csv",
+    "url": "/sample-documents/senior-events/troubleshooting-index.csv",
+    "sizeBytes": 830,
+    "status": "Completed sample",
+    "description": "Structured articles for importing into a knowledge-base tool."
   }
 ];
