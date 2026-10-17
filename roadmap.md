@@ -15,4 +15,4 @@
 
 # Request completion percentage
 - [x] Add a shared, prominent readiness-weighted completion estimate to sample and live request pages.
-- [ ] Verify scoring tests and request-page presentation across stages and screen sizes.
+- [x] Verify scoring tests and sample request presentation across four stages on desktop and mobile (18 tests pass; no browser errors; build OK). Live signed-in request presentation remains unverified.
