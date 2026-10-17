@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { sampleOrganizations, sampleAssessments, sampleContractors, rankedSampleProposals } from "./samples";
+import { sampleOrganizations, sampleAssessments, sampleContractors, rankedSampleProposals, isZeroBudget, fundingLabel } from "./samples";
 import { BUSINESS_SECTIONS, ORG_SECTIONS, missingRequired } from "./assessment";
 
 const SCREENSHOT_ORGS = ["Twin Cities Housing Alliance", "Metro Food Rescue Network", "Community Youth Works", "Hope Health Access Initiative", "Northside Legal Aid Clinic"];
@@ -38,6 +38,14 @@ describe("fictional showcase data", () => {
     }
     for (const paid of sampleAssessments.filter((a) => a.answers["budget"] !== "0"))
       for (const p of paid.proposals) expect(p.answers["provider_type"]).toBe("contractor");
+  });
+  it("categorizes every request as paid or no budget", () => {
+    const zeroBudget = sampleAssessments.filter(isZeroBudget);
+    const paid = sampleAssessments.filter((a) => !isZeroBudget(a));
+    expect(zeroBudget.map((a) => a.id)).toEqual(["senior-events", "shelter-intake"]);
+    expect(zeroBudget.every((a) => fundingLabel(a) === "No budget — pro bono")).toBe(true);
+    expect(paid.length).toBeGreaterThan(0);
+    expect(paid.every((a) => fundingLabel(a) === "Paid")).toBe(true);
   });
   it("shows only mutually confirmed handoffs as completed", () => {
     for (const a of sampleAssessments.filter((a) => a.status === "completed")) {
