@@ -198,20 +198,20 @@ export function missingRequired(sections: Section[], answers: Answers): string[]
  */
 export function readinessScore(a: Answers): number {
   const scale = (v: Answers[string]) => Math.min(5, Math.max(1, asNum(v) || 1)); // 1..5
-  const storage = { paper: 0, personal: 1, shared_drive: 2, cloud: 3 }[String(a.data_storage)] ?? 0;
-  const backups = { none: 0, manual: 1, automatic: 2, tested: 3 }[String(a.backups)] ?? 0;
-  const security = Math.min(5, asArray(a.security).length);
+  const storage = { paper: 0, personal: 1, shared_drive: 2, cloud: 3 }[String(a["data_storage"])] ?? 0;
+  const backups = { none: 0, manual: 1, automatic: 2, tested: 3 }[String(a["backups"])] ?? 0;
+  const security = Math.min(5, asArray(a["security"]).length);
   const tech =
-    ((scale(a.devices_condition) - 1) / 4) * 10 +
-    ((scale(a.internet) - 1) / 4) * 10 +
+    ((scale(a["devices_condition"]) - 1) / 4) * 10 +
+    ((scale(a["internet"]) - 1) / 4) * 10 +
     (storage / 3) * 10 +
     (backups / 3) * 10 +
     (security / 5) * 10; // max 50
 
-  const itPerson = { none: 0, volunteer: 1, part_time: 2, full_time: 3 }[String(a.it_person)] ?? 0;
-  const docs = { none: 0, partial: 1, good: 2 }[String(a.documentation)] ?? 0;
+  const itPerson = { none: 0, volunteer: 1, part_time: 2, full_time: 3 }[String(a["it_person"])] ?? 0;
+  const docs = { none: 0, partial: 1, good: 2 }[String(a["documentation"])] ?? 0;
   const knowledge =
-    ((scale(a.comfort) - 1) / 4) * 20 + (itPerson / 3) * 20 + (docs / 2) * 10; // max 50
+    ((scale(a["comfort"]) - 1) / 4) * 20 + (itPerson / 3) * 20 + (docs / 2) * 10; // max 50
 
   return Math.round(tech + knowledge);
 }
@@ -230,28 +230,28 @@ export interface MatchBreakdown {
  * Organizations with low readiness weight post-handoff support more heavily.
  */
 export function matchScore(org: Answers, biz: Answers, readiness = readinessScore(org)): MatchBreakdown {
-  const needed = asArray(org.categories);
-  const offered = new Set(asArray(biz.capabilities));
+  const needed = asArray(org["categories"]);
+  const offered = new Set(asArray(biz["capabilities"]));
   const covered = needed.filter((c) => offered.has(c)).length;
   const coverage = needed.length ? Math.round((covered / needed.length) * 40) : 40;
 
-  const max = BUDGETS.find((b) => b.value === String(org.budget))?.max ?? 0;
-  const cost = asNum(biz.cost);
+  const max = BUDGETS.find((b) => b.value === String(org["budget"]))?.max ?? 0;
+  const cost = asNum(biz["cost"]);
   let budget: number;
   if (cost <= max) budget = 20;
   else if (max === 0) budget = 0;
   else budget = Math.max(0, Math.round(20 * (1 - (cost - max) / max)));
 
-  const wantWeeks = TIMELINES.find((t) => t.value === String(org.timeline))?.weeks ?? 12;
-  const weeks = asNum(biz.weeks) || wantWeeks;
+  const wantWeeks = TIMELINES.find((t) => t.value === String(org["timeline"]))?.weeks ?? 12;
+  const weeks = asNum(biz["weeks"]) || wantWeeks;
   const timeline = weeks <= wantWeeks ? 15 : Math.max(0, Math.round(15 * (1 - (weeks - wantWeeks) / wantWeeks)));
 
-  const rank = SUPPORT_LEVELS.find((s) => s.value === String(biz.support))?.rank ?? 0;
+  const rank = SUPPORT_LEVELS.find((s) => s.value === String(biz["support"]))?.rank ?? 0;
   // Low-readiness orgs need ongoing support (rank 3); high-readiness orgs are fine with 30 days (rank 1).
   const neededRank = readiness < 40 ? 3 : readiness < 70 ? 2 : 1;
   const support = Math.round(15 * Math.min(1, rank / neededRank));
 
-  const plan = String(biz.training_plan ?? "").trim().length;
+  const plan = String(biz["training_plan"] ?? "").trim().length;
   const training = plan >= 200 ? 10 : plan >= 80 ? 7 : plan > 0 ? 4 : 0;
 
   return { coverage, budget, timeline, support, training, total: coverage + budget + timeline + support + training };

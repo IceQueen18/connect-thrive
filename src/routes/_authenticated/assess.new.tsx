@@ -29,14 +29,14 @@ function NewAssessment() {
 
   if (role && role !== "organization") return <p className="text-muted-foreground">Only organization accounts can create assessments.</p>;
 
-  const section = ORG_SECTIONS[step];
+  const section = ORG_SECTIONS[step]!;
   const last = step === ORG_SECTIONS.length - 1;
 
   function next() {
     const m = missingRequired([section], answers);
-    if (step === 0 && (!orgName.trim() || !title.trim())) return toast.error("Add your organization name and a short title.");
+    if (step === 0 && (!orgName.trim() || !title.trim())) return void toast.error("Add your organization name and a short title.");
     setMissing(m);
-    if (m.length) return toast.error("Please answer the required questions.");
+    if (m.length) return void toast.error("Please answer the required questions.");
     if (!last) { setStep(step + 1); window.scrollTo({ top: 0 }); return; }
     publish();
   }
@@ -49,7 +49,7 @@ function NewAssessment() {
       answers, readiness_score: readinessScore(answers), status: "published",
     }).select("id").single();
     setBusy(false);
-    if (error || !data) return toast.error("Could not publish the assessment.");
+    if (error || !data) return void toast.error("Could not publish the assessment.");
     await qc.invalidateQueries({ queryKey: ["assessments"] });
     toast.success("Assessment published to the needs board.");
     navigate({ to: "/needs/$id", params: { id: data.id } });

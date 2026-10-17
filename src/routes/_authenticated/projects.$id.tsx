@@ -53,7 +53,7 @@ function ProjectPage() {
 
   async function save(patch: Record<string, unknown>, msg?: string) {
     const { error } = await supabase.from("projects").update(patch as never).eq("id", id);
-    if (error) return toast.error("Could not save.");
+    if (error) return void toast.error("Could not save.");
     if (msg) toast.success(msg);
     await qc.invalidateQueries({ queryKey: ["project", id] });
     await qc.invalidateQueries({ queryKey: ["assessments"] });
@@ -62,7 +62,7 @@ function ProjectPage() {
   const setChecklist = (next: ChecklistItem[]) => { setList(next); save({ checklist: next }); };
 
   async function confirm() {
-    if (!allChecked) return toast.error("Every checklist item must be complete before confirming.");
+    if (!allChecked) return void toast.error("Every checklist item must be complete before confirming.");
     await save(isOrg ? { org_confirmed_at: new Date().toISOString() } : { business_confirmed_at: new Date().toISOString() }, "Your confirmation is recorded.");
   }
 

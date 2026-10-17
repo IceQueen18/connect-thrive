@@ -109,7 +109,7 @@ function ProposalList({ needId, need, proposals, locked }: { needId: string; nee
       implementation_doc: DOC_TEMPLATE, knowledge_base: KB_TEMPLATE,
       checklist: defaultChecklist(need.answers as Answers) as unknown as never,
     }).select("id").single();
-    if (error || !project) { setBusy(false); return toast.error("Could not start the project."); }
+    if (error || !project) { setBusy(false); return void toast.error("Could not start the project."); }
     await supabase.from("proposals").update({ status: "selected" }).eq("id", p.id);
     await supabase.from("proposals").update({ status: "declined" }).eq("assessment_id", needId).neq("id", p.id);
     await supabase.from("org_assessments").update({ status: "in_progress" }).eq("id", needId);
@@ -164,7 +164,7 @@ function ProposalForm({ needId }: { needId: string }) {
   async function go() {
     const m = missingRequired(BUSINESS_SECTIONS, answers);
     setMissing(m);
-    if (!name.trim() || m.length) return toast.error("Please complete all required questions.");
+    if (!name.trim() || m.length) return void toast.error("Please complete all required questions.");
     setBusy(true);
     try {
       const clean = Object.fromEntries(Object.entries(answers).filter(([, v]) => v !== undefined)) as Record<string, string | number | string[]>;

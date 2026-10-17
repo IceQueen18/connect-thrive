@@ -30,7 +30,7 @@ function Onboarding() {
     setBusy(true);
     const { error } = await supabase.from("user_roles").insert({ user_id: user.id, role: pick });
     setBusy(false);
-    if (error) return toast.error("Could not save your account type.");
+    if (error) return void toast.error("Could not save your account type.");
     await qc.invalidateQueries({ queryKey: ["me"] });
     navigate({ to: pick === "organization" ? "/assess/new" : "/needs" });
   }

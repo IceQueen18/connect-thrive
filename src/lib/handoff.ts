@@ -8,19 +8,19 @@ export interface ChecklistItem {
 
 /** Starter handoff checklist tailored to the organization's assessment answers. */
 export function defaultChecklist(org: Answers): ChecklistItem[] {
-  const owner = String(org.owner_after || "the designated owner");
+  const owner = String(org["owner_after"] || "the designated owner");
   const items: string[] = [
     "Implementation documentation written and reviewed with the organization",
     `All accounts, passwords and admin access transferred to ${owner}`,
     "Vendor contracts, licenses and renewal dates listed in the knowledge base",
   ];
-  for (const c of (org.categories as string[]) ?? []) {
+  for (const c of (org["categories"] as string[]) ?? []) {
     const label = NEED_CATEGORIES.find((x) => x.value === c)?.label;
     if (label) items.push(`${label}: delivered, tested and demonstrated to staff`);
   }
-  if (org.backups === "none" || org.backups === "manual") items.push("Automatic backups set up and a test restore completed");
-  if (!((org.security as string[]) ?? []).includes("mfa")) items.push("Two-factor sign-in turned on for all admin accounts");
-  for (const t of (org.training_needs as string[]) ?? []) items.push(`Training session completed: ${t.replace("_", " ")}`);
+  if (org["backups"] === "none" || org["backups"] === "manual") items.push("Automatic backups set up and a test restore completed");
+  if (!((org["security"] as string[]) ?? []).includes("mfa")) items.push("Two-factor sign-in turned on for all admin accounts");
+  for (const t of (org["training_needs"] as string[]) ?? []) items.push(`Training session completed: ${t.replace("_", " ")}`);
   items.push("Post-handoff support contact and terms agreed in writing");
   return items.map((text, i) => ({ id: `c${i}`, text, done: false }));
 }
