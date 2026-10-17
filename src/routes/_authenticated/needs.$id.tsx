@@ -17,7 +17,7 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const Route = createFileRoute("/_authenticated/needs/$id")({
-  head: () => ({ meta: [{ title: "Need details — Bridgework" }, { name: "description", content: "Organization tech assessment and competing proposals." }] }),
+  head: () => ({ meta: [{ title: "Need details — TechBridge Consulting" }, { name: "description", content: "Organization tech assessment and competing proposals." }] }),
   component: NeedPage,
 });
 

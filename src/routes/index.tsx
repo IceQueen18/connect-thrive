@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Bridgework — Match community tech needs with the right providers" },
+      { title: "TechBridge Consulting — Match community tech needs with the right providers" },
       { name: "description", content: "Organizations assess their technology needs; businesses and contractors compete with solutions; both sides sign off on a documented handoff." },
-      { property: "og:title", content: "Bridgework — Community tech needs, matched" },
+      { property: "og:title", content: "TechBridge Consulting — Community tech needs, matched" },
       { property: "og:description", content: "Assess needs, compare scored proposals, and close with a confirmed handoff and knowledge base." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -27,7 +27,7 @@ function Index() {
     <div className="min-h-screen">
       <section className="bg-hero text-primary-foreground">
         <div className="mx-auto max-w-6xl px-4 py-6 flex items-center justify-between">
-          <span className="font-display text-xl font-semibold">Bridgework</span>
+          <span className="font-display text-xl font-semibold">TechBridge Consulting</span>
           <Button asChild variant="secondary" size="sm"><Link to="/auth">Sign in</Link></Button>
         </div>
         <div className="mx-auto max-w-6xl px-4 pb-24 pt-16">
