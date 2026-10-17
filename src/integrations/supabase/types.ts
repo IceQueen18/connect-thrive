@@ -14,16 +14,184 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      org_assessments: {
+        Row: {
+          answers: Json
+          created_at: string
+          id: string
+          org_name: string
+          owner_id: string
+          readiness_score: number
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          answers?: Json
+          created_at?: string
+          id?: string
+          org_name: string
+          owner_id: string
+          readiness_score?: number
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          answers?: Json
+          created_at?: string
+          id?: string
+          org_name?: string
+          owner_id?: string
+          readiness_score?: number
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      projects: {
+        Row: {
+          assessment_id: string
+          business_confirmed_at: string | null
+          business_id: string
+          checklist: Json
+          created_at: string
+          id: string
+          implementation_doc: string
+          knowledge_base: string
+          org_confirmed_at: string | null
+          org_owner_id: string
+          proposal_id: string
+          updated_at: string
+        }
+        Insert: {
+          assessment_id: string
+          business_confirmed_at?: string | null
+          business_id: string
+          checklist?: Json
+          created_at?: string
+          id?: string
+          implementation_doc?: string
+          knowledge_base?: string
+          org_confirmed_at?: string | null
+          org_owner_id: string
+          proposal_id: string
+          updated_at?: string
+        }
+        Update: {
+          assessment_id?: string
+          business_confirmed_at?: string | null
+          business_id?: string
+          checklist?: Json
+          created_at?: string
+          id?: string
+          implementation_doc?: string
+          knowledge_base?: string
+          org_confirmed_at?: string | null
+          org_owner_id?: string
+          proposal_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "projects_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: true
+            referencedRelation: "org_assessments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "projects_proposal_id_fkey"
+            columns: ["proposal_id"]
+            isOneToOne: false
+            referencedRelation: "proposals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      proposals: {
+        Row: {
+          answers: Json
+          assessment_id: string
+          business_id: string
+          business_name: string
+          created_at: string
+          id: string
+          match_score: number
+          score_breakdown: Json
+          status: string
+        }
+        Insert: {
+          answers?: Json
+          assessment_id: string
+          business_id: string
+          business_name: string
+          created_at?: string
+          id?: string
+          match_score?: number
+          score_breakdown?: Json
+          status?: string
+        }
+        Update: {
+          answers?: Json
+          assessment_id?: string
+          business_id?: string
+          business_name?: string
+          created_at?: string
+          id?: string
+          match_score?: number
+          score_breakdown?: Json
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "proposals_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: false
+            referencedRelation: "org_assessments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_any_role: { Args: { _user_id: string }; Returns: boolean }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_assessment_owner: { Args: { _aid: string }; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "organization" | "business"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +318,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "organization", "business"],
+    },
   },
 } as const
