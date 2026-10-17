@@ -13,7 +13,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 export const Route = createFileRoute("/samples/")({
   head: () => ({ meta: [
     { title: "Sample community projects — TechBridge Consulting" },
-    { name: "description", content: "Explore five community organizations, six technology assessments, competing independent contractors and documented handoffs." },
+    { name: "description", content: "Explore seven community organizations, eight technology assessments, competing contractors and volunteers, and documented handoffs." },
     { property: "og:title", content: "Sample community projects — TechBridge Consulting" },
     { property: "og:description", content: "Fictional technology projects from initial publication to confirmed handoff." },
     { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" },
@@ -34,7 +34,7 @@ function Samples() {
   const stats = [
     { label: "Organizations", value: sampleOrganizations.length, icon: Building2 },
     { label: "Assessments", value: sampleAssessments.length, icon: ClipboardList },
-    { label: "Independent contractors", value: sampleContractors.length, icon: Users },
+    { label: "Providers", value: sampleContractors.length, icon: Users },
     { label: "Confirmed handoffs", value: sampleAssessments.filter((a) => a.status === "completed").length, icon: CheckCircle2 },
   ];
   return <SampleShell>
@@ -43,7 +43,7 @@ function Samples() {
       {stats.map((s) => <div key={s.label} className="border-t-2 border-primary pt-4"><s.icon className="mb-2 h-5 w-5 text-primary" /><div className="font-display text-3xl">{s.value}</div><div className="mt-1 text-sm text-muted-foreground">{s.label}</div></div>)}
     </div>
     <Tabs defaultValue="board">
-      <TabsList className="h-auto flex-wrap"><TabsTrigger value="board">Needs board</TabsTrigger><TabsTrigger value="timeline">Organization timeline</TabsTrigger><TabsTrigger value="contractors">Contractors</TabsTrigger></TabsList>
+      <TabsList className="h-auto flex-wrap"><TabsTrigger value="board">Needs board</TabsTrigger><TabsTrigger value="timeline">Organization timeline</TabsTrigger><TabsTrigger value="contractors">Providers</TabsTrigger></TabsList>
       <div className="my-6 grid gap-3 sm:grid-cols-3">
         <Input aria-label="Search sample requests" placeholder="Search requests or organizations…" value={search} onChange={(e) => setSearch(e.target.value)} />
         <Select value={organization} onValueChange={setOrganization}><SelectTrigger aria-label="Filter by organization" className="w-full"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="all">All organizations</SelectItem>{sampleOrganizations.map((o) => <SelectItem key={o.id} value={o.id}>{o.name}</SelectItem>)}</SelectContent></Select>
@@ -81,7 +81,7 @@ function Samples() {
       </TabsContent>
       <TabsContent value="contractors">
         <div className="grid gap-4 md:grid-cols-2">{sampleContractors.map((c) => <article key={c.id} className="rounded-lg border bg-card p-5">
-          <h2 className="text-xl font-semibold">{c.name}</h2><p className="mt-1 text-sm text-muted-foreground">Independent contractor · {c.years} years of experience</p><p className="mt-3">{c.specialty}</p>
+          <h2 className="text-xl font-semibold">{c.name}</h2><p className="mt-1 text-sm text-muted-foreground">{c.type === "volunteer" ? "Volunteer" : "Independent contractor"} · {c.years} years of experience</p><p className="mt-3">{c.specialty}</p>
           <ul className="mt-4 space-y-3">{sampleAssessments.flatMap((a) => a.proposals.filter((p) => p.contractorId === c.id).map((p) => <li key={p.id} className="border-t pt-3 text-sm"><Link to="/samples/$id" params={{ id: a.id }} className="text-primary hover:underline">{a.title}</Link><span className="mt-1 block capitalize text-muted-foreground">{p.status}</span></li>))}</ul>
         </article>)}</div>
       </TabsContent>
