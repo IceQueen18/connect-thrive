@@ -16,3 +16,4 @@
 - A DB trigger on `projects` restricts each party to its own confirmation, clears confirmations on content edits, and marks the assessment completed when both confirm.
 - Fictional showcase records live in a separate browser-safe fixture module and public sample route; never insert fake account-owned records into live tables, so examples cannot impersonate users or affect real work.
 - Compliance content lives on a public standalone route linked from home; distinguish current behavior from proposed safeguards so policy text never implies unimplemented protections.
+- Sample handoff attachments are static fictional files under public/sample-documents, indexed by a browser-safe manifest; they do not imply live upload support or change project confirmations.
