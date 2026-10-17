@@ -7,3 +7,8 @@
 - [x] Add a public AI and data compliance draft reflecting current visibility, scoring, and missing safeguards.
 - [x] Link the policy from a home-page button.
 - [x] Verify home-to-policy navigation, return link, page metadata, and mobile readability (no browser errors; build OK).
+
+# Sample handoff documents
+- [ ] Create fictional PDF, Word, spreadsheet, Markdown, and text documents for sample handoffs.
+- [ ] Show downloadable documents in implementation and knowledge-base tabs without changing live uploads.
+- [ ] Verify file validity, downloads, and sample browsing.
