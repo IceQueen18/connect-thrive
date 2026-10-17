@@ -1,0 +1,9 @@
+sample_notice,article_id,topic,resolution,owner_role
+FICTIONAL SAMPLE ONLY,KB-001,Quick start,Sign in with an organizational account and open the secure mobile-team connectivity workspace. Use the queue assigned to your role.,Operations coordinator
+FICTIONAL SAMPLE ONLY,KB-002,Routine task,"Check power, router signal and device updates before each session. Verify access with synthetic test data.",Operations coordinator
+FICTIONAL SAMPLE ONLY,KB-003,Access problems,Ask the operations coordinator to review your assigned role. Never share passwords or bypass access restrictions.,Operations coordinator
+FICTIONAL SAMPLE ONLY,KB-004,Incorrect or duplicate data,Flag the entry for coordinator review. Preserve the source record and log the correction reason; do not delete records to hide an error.,Operations coordinator
+FICTIONAL SAMPLE ONLY,KB-005,Service interruption,Test connectivity loss and reconnect steps. Stop sensitive work on unapproved networks; escalate through the coordinator.,Operations coordinator
+FICTIONAL SAMPLE ONLY,KB-006,Safe support request,"Include the time, affected step and a sanitized error message. Do not send beneficiary data, passwords or screenshots of confidential records.",Operations coordinator
+FICTIONAL SAMPLE ONLY,KB-007,Maintenance,"The coordinator reviews access monthly, checks backup status weekly and schedules a restore drill. These are example tasks, not verified operational practices.",Operations coordinator
+FICTIONAL SAMPLE ONLY,KB-008,Project status,"Both parties confirmed this fictional project. This document is a connectivity example, not evidence of HIPAA compliance.",Operations coordinator

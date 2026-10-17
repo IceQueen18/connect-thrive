@@ -1,0 +1,27 @@
+Secure mobile-team connectivity — Quick start
+
+TechBridge Consulting | FICTIONAL SAMPLE ONLY
+Organization: Hope Health Access Initiative
+Project: Secure mobile-team connectivity
+Provider: Sofia Nguyen
+Document status: Completed sample
+Version: 1.0 | Example date: October 17, 2026
+No real beneficiary information, credentials or account records are included.
+
+QUICK START
+Sign in with an organizational account and open the secure mobile-team connectivity workspace. Use the queue assigned to your role.
+
+ROUTINE TASK
+Check power, router signal and device updates before each session. Verify access with synthetic test data.
+
+ACCESS PROBLEMS
+Ask the operations coordinator to review your assigned role. Never share passwords or bypass access restrictions.
+
+INCORRECT OR DUPLICATE DATA
+Flag the entry for coordinator review. Preserve the source record and log the correction reason; do not delete records to hide an error.
+
+SERVICE INTERRUPTION
+Test connectivity loss and reconnect steps. Stop sensitive work on unapproved networks; escalate through the coordinator.
+
+SAFE SUPPORT REQUEST
+Include the time, affected step and a sanitized error message. Do not send beneficiary data, passwords or screenshots of confidential records.

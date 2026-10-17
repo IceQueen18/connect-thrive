@@ -1,0 +1,27 @@
+STEM attendance and transport coordination — Quick start
+
+TechBridge Consulting | FICTIONAL SAMPLE ONLY
+Organization: Community Youth Works
+Project: STEM attendance and transport coordination
+Provider: Jordan Ellis
+Document status: Pilot draft
+Version: 1.0 | Example date: October 17, 2026
+No real beneficiary information, credentials or account records are included.
+
+QUICK START
+Sign in with an organizational account and open the stem attendance and transport coordination workspace. Use the queue assigned to your role.
+
+ROUTINE TASK
+Generate a dated roster using participant codes, pickup groups and assigned staff. Do not include guardian contact details in shared exports.
+
+ACCESS PROBLEMS
+Ask the operations coordinator to review your assigned role. Never share passwords or bypass access restrictions.
+
+INCORRECT OR DUPLICATE DATA
+Flag the entry for coordinator review. Preserve the source record and log the correction reason; do not delete records to hide an error.
+
+SERVICE INTERRUPTION
+Test 35 synthetic participants, including duplicate attendance and pending consent. If exports fail, revert to the last validated synthetic roster and record the exception.
+
+SAFE SUPPORT REQUEST
+Include the time, affected step and a sanitized error message. Do not send beneficiary data, passwords or screenshots of confidential records.
