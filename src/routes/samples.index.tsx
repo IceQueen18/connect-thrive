@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Building2, Users, ClipboardList, CheckCircle2 } from "lucide-react";
-import { sampleAssessments, sampleOrganizations, sampleContractors, sampleStageLabel } from "@/lib/samples";
+import { sampleAssessments, sampleOrganizations, sampleContractors, sampleStageLabel, fundingLabel, isZeroBudget } from "@/lib/samples";
 import { stageIndex, readinessScore, NEED_CATEGORIES } from "@/lib/assessment";
 import { SampleShell } from "@/components/SampleShell";
 import { StageBar } from "@/components/StageBar";
@@ -25,10 +25,12 @@ function Samples() {
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("all");
   const [organization, setOrganization] = useState("all");
+  const [funding, setFunding] = useState("all");
   const rows = sampleAssessments.filter((a) => {
     const org = sampleOrganizations.find((o) => o.id === a.organizationId);
     return (organization === "all" || a.organizationId === organization) &&
       (status === "all" || sampleStageLabel(a) === status) &&
+      (funding === "all" || (funding === "probono" ? isZeroBudget(a) : !isZeroBudget(a))) &&
       `${a.title} ${org?.name} ${a.answers["problem"]}`.toLowerCase().includes(search.toLowerCase());
   });
   const stats = [
@@ -44,9 +46,10 @@ function Samples() {
     </div>
     <Tabs defaultValue="board">
       <TabsList className="h-auto flex-wrap"><TabsTrigger value="board">Needs board</TabsTrigger><TabsTrigger value="timeline">Organization timeline</TabsTrigger><TabsTrigger value="contractors">Providers</TabsTrigger></TabsList>
-      <div className="my-6 grid gap-3 sm:grid-cols-3">
+      <div className="my-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <Input aria-label="Search sample requests" placeholder="Search requests or organizations…" value={search} onChange={(e) => setSearch(e.target.value)} />
         <Select value={organization} onValueChange={setOrganization}><SelectTrigger aria-label="Filter by organization" className="w-full"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="all">All organizations</SelectItem>{sampleOrganizations.map((o) => <SelectItem key={o.id} value={o.id}>{o.name}</SelectItem>)}</SelectContent></Select>
+        <Select value={funding} onValueChange={setFunding}><SelectTrigger aria-label="Filter by funding category" className="w-full"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="all">All funding</SelectItem><SelectItem value="paid">Paid organizations</SelectItem><SelectItem value="probono">No budget — pro bono</SelectItem></SelectContent></Select>
         <Select value={status} onValueChange={setStatus}><SelectTrigger aria-label="Filter by stage" className="w-full"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="all">All stages</SelectItem>{["Published", "Proposals in", "Handoff underway", "Awaiting confirmation", "Handoff confirmed"].map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent></Select>
       </div>
       <TabsContent value="board">
@@ -54,7 +57,7 @@ function Samples() {
           {[...rows].reverse().map((a) => {
             const org = sampleOrganizations.find((o) => o.id === a.organizationId);
             return <article key={a.id} className="flex flex-col rounded-lg border bg-card p-5 shadow-card">
-              <div className="text-sm text-muted-foreground">{org?.name}</div>
+              <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground"><span>{org?.name}</span><span className={`rounded px-2 py-0.5 text-xs font-medium ${isZeroBudget(a) ? "bg-amber-500/15 text-amber-700" : "bg-secondary text-foreground"}`}>{fundingLabel(a)}</span></div>
               <h2 className="mt-2 text-xl font-semibold"><Link to="/samples/$id" params={{ id: a.id }} className="hover:text-primary">{a.title}</Link></h2>
               <p className="mt-3 text-sm text-muted-foreground">{String(a.answers["problem"])}</p>
               <div className="mt-4 flex flex-wrap gap-2">{(a.answers["categories"] as string[]).map((c) => <span key={c} className="rounded bg-secondary px-2 py-1 text-xs">{NEED_CATEGORIES.find((n) => n.value === c)?.label}</span>)}</div>
@@ -74,7 +77,7 @@ function Samples() {
               <div className="text-xs text-muted-foreground">{a.createdAt.slice(0, 10)}</div>
               <h3 className="mt-1 font-semibold"><Link to="/samples/$id" params={{ id: a.id }} className="hover:text-primary">{a.title}</Link></h3>
               <div className="mt-3 max-w-3xl"><StageBar index={stageIndex(a.status, a.proposals.length)} /></div>
-              <div className="mt-3 text-sm text-primary">{sampleStageLabel(a)} · {a.proposals.length} proposals</div>
+              <div className="mt-3 flex flex-wrap items-center gap-2 text-sm text-primary"><span>{sampleStageLabel(a)} · {a.proposals.length} proposals</span><span className={`rounded px-2 py-0.5 text-xs font-medium ${isZeroBudget(a) ? "bg-amber-500/15 text-amber-700" : "bg-secondary text-foreground"}`}>{fundingLabel(a)}</span></div>
             </li>)}
           </ol>
         </section>)}
