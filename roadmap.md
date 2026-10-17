@@ -17,3 +17,7 @@
 - [x] Add a shared, prominent readiness-weighted completion estimate to sample and live request pages.
 - [x] Show the estimate as a circular ring at the top right of the request page with the current stage named beneath it.
 - [x] Verify scoring tests and sample request presentation across four stages on desktop and mobile (18 tests pass; no browser errors; build OK). Live signed-in request presentation remains unverified.
+
+# Brand logo
+- [x] Place the supplied logo on the home page, sign-in page, and both public headers, with the tab icon cut from the same artwork.
+- [x] Verify the logo loads, stays readable, and does not clip on desktop and phone, and that the tab icon resolves (no browser errors; phone layout clean). Signed-in header remains unverified until an account exists.
