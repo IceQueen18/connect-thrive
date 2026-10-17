@@ -12,3 +12,7 @@
 - [x] Create project-specific implementation and knowledge-base examples in PDF, DOCX, XLSX, Markdown, TXT, and CSV formats.
 - [x] Show downloadable sample attachments in each sample handoff, separate from real account files.
 - [x] Validate files, tests, and the download flow on desktop and mobile (7 tests pass; all six downloads verified; four handoffs checked; build OK).
+
+# Request completion percentage
+- [x] Add a shared, prominent readiness-weighted completion estimate to sample and live request pages.
+- [ ] Verify scoring tests and request-page presentation across stages and screen sizes.

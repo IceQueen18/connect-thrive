@@ -1,10 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { CheckCircle2, Circle } from "lucide-react";
 import { sampleAssessments, sampleOrganizations, sampleContractors, rankedSampleProposals, sampleStageLabel } from "@/lib/samples";
-import { readinessScore, stageIndex, ORG_SECTIONS, BUSINESS_SECTIONS } from "@/lib/assessment";
+import { readinessScore, ORG_SECTIONS, BUSINESS_SECTIONS } from "@/lib/assessment";
 import { SampleShell } from "@/components/SampleShell";
 import { SampleDocuments } from "@/components/SampleDocuments";
-import { StageBar } from "@/components/StageBar";
+import { CompletionScore } from "@/components/CompletionScore";
 import { StatusPill } from "@/components/StatusPill";
 import { AnswerSummary } from "@/components/QuestionForm";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -34,8 +34,8 @@ function SampleRequest() {
     <Link to="/samples" className="text-sm text-primary hover:underline">← Sample projects</Link>
     <p className="mt-5 text-sm text-muted-foreground">{org?.name} · {org?.contact} · {a.createdAt.slice(0, 10)}</p>
     <h1 className="mt-2 text-3xl font-semibold">{a.title}</h1>
-    <div className="mt-4 flex flex-wrap gap-5 text-sm"><span className="font-medium text-primary">{sampleStageLabel(a)}</span><span>Readiness {readinessScore(a.answers)}/100</span><span>{a.proposals.length} proposals</span></div>
-    <div className="my-7 max-w-3xl"><StageBar index={stageIndex(a.status, a.proposals.length)} /></div>
+    <div className="mt-4 flex flex-wrap gap-5 text-sm"><span className="font-medium text-primary">{sampleStageLabel(a)}</span><span>{a.proposals.length} proposals</span></div>
+    <CompletionScore readiness={readinessScore(a.answers)} status={a.status} proposalCount={a.proposals.length} />
     <Tabs defaultValue="assessment">
       <TabsList className="h-auto flex-wrap"><TabsTrigger value="assessment">Assessment</TabsTrigger><TabsTrigger value="proposals">Proposals ({proposals.length})</TabsTrigger>{h && <TabsTrigger value="handoff">Handoff</TabsTrigger>}</TabsList>
       <TabsContent value="assessment" className="mt-6 max-w-4xl"><AnswerSummary sections={ORG_SECTIONS} answers={a.answers} /></TabsContent>
