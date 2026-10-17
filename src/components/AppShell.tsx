@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useMe } from "@/hooks/use-me";
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
-import logoMark from "@/assets/logo-mark.png.asset.json";
+import logoMark from "@/assets/logo-circle-mark.png.asset.json";
 
 export function AppShell({ children }: { children: ReactNode }) {
   const { user, role, isLoading } = useMe();
@@ -32,7 +32,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-20 border-b bg-background/90 backdrop-blur">
         <div className="mx-auto flex h-14 max-w-6xl items-center gap-4 px-4">
           <Link to="/" className="flex items-center gap-2.5">
-            <img src={logoMark.url} alt="" aria-hidden="true" className="h-7 w-auto shrink-0" />
+            <img src={logoMark.url} alt="" aria-hidden="true" className="h-9 w-9 shrink-0" />
             <span className="font-display text-lg font-semibold text-primary">TechBridge Consulting</span>
           </Link>
           {role && (

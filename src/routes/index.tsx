@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ClipboardList, Trophy, BookOpenCheck, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logoFull from "@/assets/logo-full.png.asset.json";
+import logoFull from "@/assets/logo-circle-full.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
