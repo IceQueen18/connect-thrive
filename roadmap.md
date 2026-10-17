@@ -9,6 +9,6 @@
 - [x] Verify home-to-policy navigation, return link, page metadata, and mobile readability (no browser errors; build OK).
 
 # Sample handoff documents
-- [ ] Create fictional PDF, Word, spreadsheet, Markdown, and text documents for sample handoffs.
-- [ ] Show downloadable documents in implementation and knowledge-base tabs without changing live uploads.
-- [ ] Verify file validity, downloads, and sample browsing.
+- [x] Create 20 fictional PDF, Word, spreadsheet, Markdown, and text documents across four sample handoffs.
+- [x] Show downloadable documents in implementation and knowledge-base tabs without changing live uploads.
+- [x] Verify file validity, all five downloads, and sample browsing (7 tests passed; no browser errors; build OK).
