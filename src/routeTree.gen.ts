@@ -16,6 +16,8 @@ import { Route as AuthenticatedDashboardRouteImport } from './routes/_authentica
 import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
 import { Route as AuthenticatedAssessNewRouteImport } from './routes/_authenticated/assess.new'
 import { Route as AuthenticatedNeedsIndexRouteImport } from './routes/_authenticated/needs.index'
+import { Route as AuthenticatedNeedsIdRouteImport } from './routes/_authenticated/needs.$id'
+import { Route as AuthenticatedProjectsIdRouteImport } from './routes/_authenticated/projects.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -51,6 +53,16 @@ const AuthenticatedNeedsIndexRoute = AuthenticatedNeedsIndexRouteImport.update({
   path: '/needs/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedNeedsIdRoute = AuthenticatedNeedsIdRouteImport.update({
+  id: '/needs/$id',
+  path: '/needs/$id',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedProjectsIdRoute = AuthenticatedProjectsIdRouteImport.update({
+  id: '/projects/$id',
+  path: '/projects/$id',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -58,6 +70,8 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
   '/assess/new': typeof AuthenticatedAssessNewRoute
+  '/needs/$id': typeof AuthenticatedNeedsIdRoute
+  '/projects/$id': typeof AuthenticatedProjectsIdRoute
   '/needs/': typeof AuthenticatedNeedsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -66,6 +80,8 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
   '/assess/new': typeof AuthenticatedAssessNewRoute
+  '/needs/$id': typeof AuthenticatedNeedsIdRoute
+  '/projects/$id': typeof AuthenticatedProjectsIdRoute
   '/needs': typeof AuthenticatedNeedsIndexRoute
 }
 export interface FileRoutesById {
@@ -76,14 +92,31 @@ export interface FileRoutesById {
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
   '/_authenticated/assess/new': typeof AuthenticatedAssessNewRoute
+  '/_authenticated/needs/$id': typeof AuthenticatedNeedsIdRoute
+  '/_authenticated/projects/$id': typeof AuthenticatedProjectsIdRoute
   '/_authenticated/needs/': typeof AuthenticatedNeedsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/auth' | '/dashboard' | '/onboarding' | '/assess/new' | '/needs/'
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/onboarding'
+    | '/assess/new'
+    | '/needs/$id'
+    | '/projects/$id'
+    | '/needs/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/dashboard' | '/onboarding' | '/assess/new' | '/needs'
+  to:
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/onboarding'
+    | '/assess/new'
+    | '/needs/$id'
+    | '/projects/$id'
+    | '/needs'
   id:
     | '__root__'
     | '/'
@@ -92,6 +125,8 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard'
     | '/_authenticated/onboarding'
     | '/_authenticated/assess/new'
+    | '/_authenticated/needs/$id'
+    | '/_authenticated/projects/$id'
     | '/_authenticated/needs/'
   fileRoutesById: FileRoutesById
 }
@@ -152,6 +187,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedNeedsIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/needs/$id': {
+      id: '/_authenticated/needs/$id'
+      path: '/needs/$id'
+      fullPath: '/needs/$id'
+      preLoaderRoute: typeof AuthenticatedNeedsIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/projects/$id': {
+      id: '/_authenticated/projects/$id'
+      path: '/projects/$id'
+      fullPath: '/projects/$id'
+      preLoaderRoute: typeof AuthenticatedProjectsIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
@@ -159,6 +208,8 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedOnboardingRoute: typeof AuthenticatedOnboardingRoute
   AuthenticatedAssessNewRoute: typeof AuthenticatedAssessNewRoute
+  AuthenticatedNeedsIdRoute: typeof AuthenticatedNeedsIdRoute
+  AuthenticatedProjectsIdRoute: typeof AuthenticatedProjectsIdRoute
   AuthenticatedNeedsIndexRoute: typeof AuthenticatedNeedsIndexRoute
 }
 
@@ -166,6 +217,8 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedOnboardingRoute: AuthenticatedOnboardingRoute,
   AuthenticatedAssessNewRoute: AuthenticatedAssessNewRoute,
+  AuthenticatedNeedsIdRoute: AuthenticatedNeedsIdRoute,
+  AuthenticatedProjectsIdRoute: AuthenticatedProjectsIdRoute,
   AuthenticatedNeedsIndexRoute: AuthenticatedNeedsIndexRoute,
 }
 
