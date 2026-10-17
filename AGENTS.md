@@ -8,3 +8,9 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+## Architecture rules
+- Assessment questions and all scoring live in `src/lib/assessment.ts` (pure, tested); UI renders from these definitions so questions change in one place.
+- Proposals are inserted only by the `submitProposal` server function (no client INSERT grant) so the automatic fit score can't be forged.
+- Roles live in `public.user_roles`; users may self-assign only `organization` or `business` once; `admin` is granted manually.
+- A DB trigger on `projects` restricts each party to its own confirmation, clears confirmations on content edits, and marks the assessment completed when both confirm.
