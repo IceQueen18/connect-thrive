@@ -9,7 +9,7 @@ import { BUSINESS_SECTIONS, ORG_SECTIONS, missingRequired, type Answers, type Ma
 import { defaultChecklist, DOC_TEMPLATE, KB_TEMPLATE } from "@/lib/handoff";
 import { submitProposal } from "@/lib/proposals.functions";
 import { AnswerSummary, SectionFields } from "@/components/QuestionForm";
-import { CompletionScore } from "@/components/CompletionScore";
+import { CompletionRing, CompletionScore } from "@/components/CompletionScore";
 import { StatusPill } from "@/components/StatusPill";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -51,9 +51,12 @@ function NeedPage() {
 
   return (
     <div>
-      <div className="text-sm text-muted-foreground">{n.org_name}</div>
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <h1 className="text-3xl font-semibold">{n.title}</h1>
+      <div className="flex flex-wrap items-start justify-between gap-x-8 gap-y-5">
+        <div className="min-w-0">
+          <div className="text-sm text-muted-foreground">{n.org_name}</div>
+          <h1 className="mt-1 max-w-2xl text-3xl font-semibold">{n.title}</h1>
+        </div>
+        <CompletionRing readiness={n.readiness_score} status={n.status} proposalCount={list.length} />
       </div>
       <CompletionScore readiness={n.readiness_score} status={n.status} proposalCount={list.length} />
       {proj && (isOwner || mine?.status === "selected") && (

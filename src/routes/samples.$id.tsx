@@ -4,7 +4,7 @@ import { sampleAssessments, sampleOrganizations, sampleContractors, rankedSample
 import { readinessScore, ORG_SECTIONS, BUSINESS_SECTIONS } from "@/lib/assessment";
 import { SampleShell } from "@/components/SampleShell";
 import { SampleDocuments } from "@/components/SampleDocuments";
-import { CompletionScore } from "@/components/CompletionScore";
+import { CompletionRing, CompletionScore } from "@/components/CompletionScore";
 import { StatusPill } from "@/components/StatusPill";
 import { AnswerSummary } from "@/components/QuestionForm";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -32,9 +32,14 @@ function SampleRequest() {
   const h = a.handoff;
   return <SampleShell>
     <Link to="/samples" className="text-sm text-primary hover:underline">← Sample projects</Link>
-    <p className="mt-5 text-sm text-muted-foreground">{org?.name} · {org?.contact} · {a.createdAt.slice(0, 10)}</p>
-    <h1 className="mt-2 text-3xl font-semibold">{a.title}</h1>
-    <div className="mt-4 flex flex-wrap gap-5 text-sm"><span className="font-medium text-primary">{sampleStageLabel(a)}</span><span>{a.proposals.length} proposals</span></div>
+    <div className="mt-5 flex flex-wrap items-start justify-between gap-x-8 gap-y-5">
+      <div className="min-w-0">
+        <p className="text-sm text-muted-foreground">{org?.name} · {org?.contact} · {a.createdAt.slice(0, 10)}</p>
+        <h1 className="mt-2 max-w-2xl text-3xl font-semibold">{a.title}</h1>
+        <div className="mt-4 flex flex-wrap gap-5 text-sm"><span className="font-medium text-primary">{sampleStageLabel(a)}</span><span>{a.proposals.length} proposals</span></div>
+      </div>
+      <CompletionRing readiness={readinessScore(a.answers)} status={a.status} proposalCount={a.proposals.length} />
+    </div>
     <CompletionScore readiness={readinessScore(a.answers)} status={a.status} proposalCount={a.proposals.length} />
     <Tabs defaultValue="assessment">
       <TabsList className="h-auto flex-wrap"><TabsTrigger value="assessment">Assessment</TabsTrigger><TabsTrigger value="proposals">Proposals ({proposals.length})</TabsTrigger>{h && <TabsTrigger value="handoff">Handoff</TabsTrigger>}</TabsList>
