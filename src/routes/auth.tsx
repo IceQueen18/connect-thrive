@@ -7,7 +7,7 @@ import { lovable } from "@/integrations/lovable";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import logoFull from "@/assets/logo-full.png.asset.json";
+import logoFull from "@/assets/logo-circle-full.png.asset.json";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
@@ -66,7 +66,7 @@ function AuthPage() {
     <div className="grid min-h-screen lg:grid-cols-2">
       <div className="hidden bg-hero p-12 text-primary-foreground lg:flex lg:flex-col lg:justify-between">
         <a href="/" className="inline-flex w-fit rounded-2xl bg-background p-5 shadow-card">
-          <img src={logoFull.url} alt="TechBridge Consulting — Your Bridge to Technology, Impact, and Success. Minneapolis, MN." className="w-56" />
+          <img src={logoFull.url} alt="TechBridge Consulting — Your Bridge to Technology, Impact, and Success. Minneapolis, MN." className="w-80 xl:w-96" />
         </a>
         <blockquote className="max-w-md font-display text-3xl leading-snug">
           Clear needs in. Lasting solutions out — with both sides signing off.

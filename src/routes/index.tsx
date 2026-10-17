@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ClipboardList, Trophy, BookOpenCheck, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logoFull from "@/assets/logo-full.png.asset.json";
+import logoFull from "@/assets/logo-circle-full.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -42,7 +42,7 @@ function Index() {
             </div>
           </div>
           <div className="justify-self-center rounded-2xl bg-background p-6 shadow-card md:justify-self-end">
-            <img src={logoFull.url} alt="TechBridge Consulting — Your Bridge to Technology, Impact, and Success. Minneapolis, MN." className="w-64 sm:w-72 md:w-80" />
+            <img src={logoFull.url} alt="TechBridge Consulting — Your Bridge to Technology, Impact, and Success. Minneapolis, MN." className="w-72 sm:w-80 md:w-96" />
           </div>
         </div>
       </section>

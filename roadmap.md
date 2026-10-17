@@ -21,3 +21,4 @@
 # Brand logo
 - [x] Place the supplied logo on the home page, sign-in page, and both public headers, with the tab icon cut from the same artwork.
 - [x] Verify the logo loads, stays readable, and does not clip on desktop and phone, and that the tab icon resolves (no browser errors; phone layout clean). Signed-in header remains unverified until an account exists.
+- [x] Present the logo as a circle: round badges on the home page, sign-in page, and both public headers, plus a round tab icon, each checked for legibility at its display size (no browser errors; build OK).
