@@ -3,6 +3,7 @@ import { CheckCircle2, Circle } from "lucide-react";
 import { sampleAssessments, sampleOrganizations, sampleContractors, rankedSampleProposals, sampleStageLabel } from "@/lib/samples";
 import { readinessScore, stageIndex, ORG_SECTIONS, BUSINESS_SECTIONS } from "@/lib/assessment";
 import { SampleShell } from "@/components/SampleShell";
+import { SampleDocuments } from "@/components/SampleDocuments";
 import { StageBar } from "@/components/StageBar";
 import { StatusPill } from "@/components/StatusPill";
 import { AnswerSummary } from "@/components/QuestionForm";
@@ -52,8 +53,8 @@ function SampleRequest() {
         {a.status === "completed" && <p className="my-5 flex items-center gap-2 text-success"><CheckCircle2 className="h-5 w-5 shrink-0" />Both parties confirmed their obligations are met.</p>}
         <Tabs defaultValue="checklist" className="mt-6"><TabsList className="h-auto flex-wrap"><TabsTrigger value="checklist">Checklist</TabsTrigger><TabsTrigger value="docs">Implementation docs</TabsTrigger><TabsTrigger value="kb">Knowledge base</TabsTrigger></TabsList>
           <TabsContent value="checklist"><ul className="mt-5 max-w-4xl divide-y">{h.checklist.map((c) => <li key={c.id} className="flex items-start gap-3 py-3 text-sm">{c.done ? <CheckCircle2 aria-label="Complete" className="h-5 w-5 shrink-0 text-success" /> : <Circle aria-label="Pending" className="h-5 w-5 shrink-0 text-muted-foreground" />}<span>{c.text}</span></li>)}</ul></TabsContent>
-          <TabsContent value="docs"><pre className="mt-5 max-w-4xl whitespace-pre-wrap break-words font-sans text-sm leading-7">{h.implementationDoc}</pre></TabsContent>
-          <TabsContent value="kb"><pre className="mt-5 max-w-4xl whitespace-pre-wrap break-words font-sans text-sm leading-7">{h.knowledgeBase}</pre></TabsContent>
+          <TabsContent value="docs"><SampleDocuments assessmentId={a.id} kind="implementation" /><pre className="mt-5 max-w-4xl whitespace-pre-wrap break-words font-sans text-sm leading-7">{h.implementationDoc}</pre></TabsContent>
+          <TabsContent value="kb"><SampleDocuments assessmentId={a.id} kind="knowledge-base" /><pre className="mt-5 max-w-4xl whitespace-pre-wrap break-words font-sans text-sm leading-7">{h.knowledgeBase}</pre></TabsContent>
         </Tabs>
       </TabsContent>}
     </Tabs>
