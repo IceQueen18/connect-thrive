@@ -13,7 +13,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const Route = createFileRoute("/_authenticated/projects/$id")({
-  head: () => ({ meta: [{ title: "Handoff workspace — BridgeWorkSolutions" }, { name: "description", content: "Implementation documentation, handoff checklist and knowledge base." }] }),
+  head: () => ({ meta: [{ title: "Handoff workspace — Bridgework" }, { name: "description", content: "Implementation documentation, handoff checklist and knowledge base." }] }),
   component: ProjectPage,
 });
 

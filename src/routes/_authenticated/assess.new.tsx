@@ -12,7 +12,7 @@ import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/assess/new")({
-  head: () => ({ meta: [{ title: "New tech assessment — BridgeWorkSolutions" }, { name: "description", content: "Describe your organization's technology request, current setup and in-house knowledge." }] }),
+  head: () => ({ meta: [{ title: "New tech assessment — Bridgework" }, { name: "description", content: "Describe your organization's technology request, current setup and in-house knowledge." }] }),
   component: NewAssessment,
 });
 

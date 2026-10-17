@@ -11,9 +11,9 @@ import { Label } from "@/components/ui/label";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Sign in — BridgeWorkSolutions" },
+      { title: "Sign in — Bridgework" },
       { name: "description", content: "Sign in to assess your technology needs or propose solutions." },
-      { property: "og:title", content: "Sign in — BridgeWorkSolutions" },
+      { property: "og:title", content: "Sign in — Bridgework" },
       { property: "og:description", content: "Sign in to assess your technology needs or propose solutions." },
     ],
   }),
@@ -62,7 +62,7 @@ function AuthPage() {
   return (
     <div className="grid min-h-screen lg:grid-cols-2">
       <div className="hidden bg-hero p-12 text-primary-foreground lg:flex lg:flex-col lg:justify-between">
-        <a href="/" className="font-display text-2xl font-semibold">BridgeWorkSolutions</a>
+        <a href="/" className="font-display text-2xl font-semibold">Bridgework</a>
         <blockquote className="max-w-md font-display text-3xl leading-snug">
           Clear needs in. Lasting solutions out — with both sides signing off.
         </blockquote>

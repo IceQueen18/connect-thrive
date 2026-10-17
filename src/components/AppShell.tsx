@@ -30,7 +30,7 @@ export function AppShell({ children }: { children: ReactNode }) {
     <div className="min-h-screen">
       <header className="sticky top-0 z-20 border-b bg-background/90 backdrop-blur">
         <div className="mx-auto flex h-14 max-w-6xl items-center gap-4 px-4">
-          <Link to="/" className="font-display text-lg font-semibold text-primary">BridgeWorkSolutions</Link>
+          <Link to="/" className="font-display text-lg font-semibold text-primary">Bridgework</Link>
           {role && (
             <nav className="flex items-center gap-1">
               <Link to="/dashboard" className={linkCls} activeProps={active}>Dashboard</Link>
