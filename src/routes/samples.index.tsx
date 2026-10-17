@@ -46,9 +46,10 @@ function Samples() {
     </div>
     <Tabs defaultValue="board">
       <TabsList className="h-auto flex-wrap"><TabsTrigger value="board">Needs board</TabsTrigger><TabsTrigger value="timeline">Organization timeline</TabsTrigger><TabsTrigger value="contractors">Providers</TabsTrigger></TabsList>
-      <div className="my-6 grid gap-3 sm:grid-cols-3">
+      <div className="my-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <Input aria-label="Search sample requests" placeholder="Search requests or organizations…" value={search} onChange={(e) => setSearch(e.target.value)} />
         <Select value={organization} onValueChange={setOrganization}><SelectTrigger aria-label="Filter by organization" className="w-full"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="all">All organizations</SelectItem>{sampleOrganizations.map((o) => <SelectItem key={o.id} value={o.id}>{o.name}</SelectItem>)}</SelectContent></Select>
+        <Select value={funding} onValueChange={setFunding}><SelectTrigger aria-label="Filter by funding category" className="w-full"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="all">All funding</SelectItem><SelectItem value="paid">Paid organizations</SelectItem><SelectItem value="probono">No budget — pro bono</SelectItem></SelectContent></Select>
         <Select value={status} onValueChange={setStatus}><SelectTrigger aria-label="Filter by stage" className="w-full"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="all">All stages</SelectItem>{["Published", "Proposals in", "Handoff underway", "Awaiting confirmation", "Handoff confirmed"].map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent></Select>
       </div>
       <TabsContent value="board">
