@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/onboarding")({
-  head: () => ({ meta: [{ title: "Choose your account type — TechBridge Consulting" }, { name: "description", content: "Tell us whether you're an organization or a solution provider." }] }),
+  head: () => ({ meta: [{ title: "Choose your account type — TechBridge Consulting" }, { name: "description", content: "Tell us whether you're an organization or a solution provider." }, { property: "og:title", content: "Choose your account type — TechBridge Consulting" }, { property: "og:description", content: "Tell us whether you're an organization or a solution provider." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
   component: Onboarding,
 });
 

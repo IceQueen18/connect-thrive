@@ -35,6 +35,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             <nav className="flex items-center gap-1">
               <Link to="/dashboard" className={linkCls} activeProps={active}>Dashboard</Link>
               <Link to="/needs" className={linkCls} activeProps={active} activeOptions={{ exact: true }}>Needs board</Link>
+              <Link to="/samples" className={linkCls}>Samples</Link>
               {role === "organization" && (
                 <Link to="/assess/new" className={linkCls} activeProps={active}>New assessment</Link>
               )}

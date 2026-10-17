@@ -9,7 +9,7 @@ import { StatusPill } from "@/components/StatusPill";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
-  head: () => ({ meta: [{ title: "Dashboard — TechBridge Consulting" }, { name: "description", content: "Your assessments, proposals and projects." }] }),
+  head: () => ({ meta: [{ title: "Dashboard — TechBridge Consulting" }, { name: "description", content: "Your assessments, proposals and projects." }, { property: "og:title", content: "Dashboard — TechBridge Consulting" }, { property: "og:description", content: "Your assessments, proposals and projects." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
   component: Dashboard,
 });
 
