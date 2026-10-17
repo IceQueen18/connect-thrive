@@ -19,7 +19,7 @@ function NeedsBoard() {
       return data ?? [];
     },
   });
-  const rows = cat ? data.filter((d) => ((d.answers as Answers).categories as string[] | undefined)?.includes(cat)) : data;
+  const rows = cat ? data.filter((d) => ((d.answers as Answers)["categories"] as string[] | undefined)?.includes(cat)) : data;
 
   return (
     <div>
@@ -38,15 +38,15 @@ function NeedsBoard() {
               <Link key={n.id} to="/needs/$id" params={{ id: n.id }} className="group rounded-lg border bg-card p-5 shadow-card transition-colors hover:border-primary/50">
                 <div className="text-xs text-muted-foreground">{n.org_name} · {new Date(n.created_at).toLocaleDateString()}</div>
                 <h2 className="mt-1 text-xl font-semibold group-hover:text-primary">{n.title}</h2>
-                <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">{String(a.problem ?? "")}</p>
+                <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">{String(a["problem"] ?? "")}</p>
                 <div className="mt-4 flex flex-wrap gap-1.5">
-                  {((a.categories as string[]) ?? []).map((c) => (
+                  {((a["categories"] as string[]) ?? []).map((c) => (
                     <span key={c} className="rounded-full bg-secondary px-2 py-0.5 text-xs">{NEED_CATEGORIES.find((x) => x.value === c)?.label}</span>
                   ))}
                 </div>
                 <div className="mt-4 flex gap-4 text-xs text-muted-foreground">
-                  <span>Budget: {BUDGETS.find((b) => b.value === a.budget)?.label}</span>
-                  <span>Timeline: {TIMELINES.find((t) => t.value === a.timeline)?.label}</span>
+                  <span>Budget: {BUDGETS.find((b) => b.value === a["budget"])?.label}</span>
+                  <span>Timeline: {TIMELINES.find((t) => t.value === a["timeline"])?.label}</span>
                   <span className="ml-auto">{count} proposal{count === 1 ? "" : "s"}</span>
                 </div>
               </Link>

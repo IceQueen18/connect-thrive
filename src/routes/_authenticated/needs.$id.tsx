@@ -131,7 +131,7 @@ function ProposalList({ needId, need, proposals, locked }: { needId: string; nee
               <span className="font-display text-2xl text-muted-foreground">#{i + 1}</span>
               <div className="flex-1">
                 <div className="font-semibold">{p.business_name}</div>
-                <div className="text-sm text-muted-foreground">${Number(a.cost ?? 0).toLocaleString()} · {String(a.weeks)} weeks</div>
+                <div className="text-sm text-muted-foreground">${Number(a["cost"] ?? 0).toLocaleString()} · {String(a["weeks"])} weeks</div>
               </div>
               <div className="text-right"><div className="font-display text-2xl text-primary">{p.match_score}</div><div className="text-xs text-muted-foreground">fit score</div></div>
               <StatusPill status={p.status} />

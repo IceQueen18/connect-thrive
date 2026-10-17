@@ -37,7 +37,7 @@ function AuthPage() {
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     const parsed = schema.safeParse({ email, password });
-    if (!parsed.success) return void toast.error(parsed.error.issues[0].message);
+    if (!parsed.success) return void toast.error(parsed.error.issues[0]?.message ?? "Invalid input");
     setBusy(true);
     if (mode === "up") {
       const { error } = await supabase.auth.signUp({ ...parsed.data, options: { emailRedirectTo: window.location.origin + "/dashboard" } });
