@@ -30,3 +30,7 @@
 - [x] Add two volunteer providers (Ruth Okafor, Dan Whitfield), label volunteers distinctly from contractors, and show "Pro bono — no charge" for zero-cost proposals.
 - [x] Generate the six sample documents for the completed volunteer handoff and extend the attachment tests.
 - [x] Verify with tests, typecheck, and desktop/mobile browsing.
+
+# Funding category
+- [x] Add a funding filter (all / paid / no budget — pro bono) and a funding badge on the sample board cards and timeline entries.
+- [x] Verify filtering counts (2 pro bono, 6 paid, 8 total) with a data test and browser checks (8 tests pass; no console errors).
