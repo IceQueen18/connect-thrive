@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useMe } from "@/hooks/use-me";
 import { stageIndex } from "@/lib/assessment";
 import { StageBar } from "@/components/StageBar";
+import { StatusPill } from "@/components/StatusPill";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
@@ -119,13 +120,4 @@ function BusinessDash({ userId }: { userId: string }) {
       </div>
     </div>
   );
-}
-
-export function StatusPill({ status }: { status: string }) {
-  const map: Record<string, string> = {
-    submitted: "bg-secondary text-secondary-foreground",
-    selected: "bg-success text-success-foreground",
-    declined: "bg-muted text-muted-foreground",
-  };
-  return <span className={`rounded-full px-2.5 py-0.5 text-xs capitalize ${map[status] ?? "bg-secondary"}`}>{status}</span>;
 }
