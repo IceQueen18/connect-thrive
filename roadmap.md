@@ -6,4 +6,4 @@
 # Compliance policy
 - [x] Add a public AI and data compliance draft reflecting current visibility, scoring, and missing safeguards.
 - [x] Link the policy from a home-page button.
-- [ ] Verify home-to-policy navigation and mobile readability.
+- [x] Verify home-to-policy navigation, return link, page metadata, and mobile readability (no browser errors; build OK).
