@@ -66,7 +66,7 @@ function AuthPage() {
     <div className="grid min-h-screen lg:grid-cols-2">
       <div className="hidden bg-hero p-12 text-primary-foreground lg:flex lg:flex-col lg:justify-between">
         <a href="/" className="inline-flex w-fit rounded-2xl bg-background p-5 shadow-card">
-          <img src={logoFull.url} alt="TechBridge Consulting — Your Bridge to Technology, Impact, and Success. Minneapolis, MN." className="w-72" />
+          <img src={logoFull.url} alt="TechBridge Consulting — Your Bridge to Technology, Impact, and Success. Minneapolis, MN." className="w-80 xl:w-96" />
         </a>
         <blockquote className="max-w-md font-display text-3xl leading-snug">
           Clear needs in. Lasting solutions out — with both sides signing off.
