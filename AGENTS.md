@@ -18,3 +18,4 @@
 - Fictional showcase records live in a separate browser-safe fixture module and public sample route; never insert fake account-owned records into live tables, so examples cannot impersonate users or affect real work.
 - Compliance content lives on a public standalone route linked from home; distinguish current behavior from proposed safeguards so policy text never implies unimplemented protections.
 - Sample document attachments use a browser-safe manifest and static public files, displayed only in sample handoffs; downloads must not imply live upload support or contain real beneficiary data.
+- Brand artwork is served from `src/assets/*.asset.json` (full logo with lettering for large light surfaces, skyline band for compact headers) while the tab icon is a real downscaled file in `public/`; the full logo is shown only on light surfaces because its lettering is dark, and the icon is cut from the same artwork above the lettering line.

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ClipboardList, Trophy, BookOpenCheck, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoFull from "@/assets/logo-full.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -30,13 +31,18 @@ function Index() {
           <span className="font-display text-xl font-semibold">TechBridge Consulting</span>
           <Button asChild variant="secondary" size="sm"><Link to="/auth">Sign in</Link></Button>
         </div>
-        <div className="mx-auto max-w-6xl px-4 pb-24 pt-16">
-          <h1 className="max-w-3xl text-5xl font-semibold leading-tight md:text-6xl">Technology help that's scoped right and stays working.</h1>
-          <p className="mt-6 max-w-xl text-lg opacity-90">Communities and organizations define what they need. Providers compete to solve it. Everyone signs off on the handoff.</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button asChild size="lg" variant="secondary"><Link to="/auth">Get started</Link></Button>
-            <Button asChild size="lg" variant="secondary"><Link to="/samples">Explore sample projects</Link></Button>
-            <Button asChild size="lg" variant="secondary"><Link to="/compliance"><ShieldCheck aria-hidden="true" />AI &amp; Data Compliance</Link></Button>
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-24 pt-16 md:grid-cols-[minmax(0,1fr)_auto]">
+          <div>
+            <h1 className="max-w-3xl text-5xl font-semibold leading-tight md:text-6xl">Technology help that's scoped right and stays working.</h1>
+            <p className="mt-6 max-w-xl text-lg opacity-90">Communities and organizations define what they need. Providers compete to solve it. Everyone signs off on the handoff.</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button asChild size="lg" variant="secondary"><Link to="/auth">Get started</Link></Button>
+              <Button asChild size="lg" variant="secondary"><Link to="/samples">Explore sample projects</Link></Button>
+              <Button asChild size="lg" variant="secondary"><Link to="/compliance"><ShieldCheck aria-hidden="true" />AI &amp; Data Compliance</Link></Button>
+            </div>
+          </div>
+          <div className="justify-self-center rounded-2xl bg-background p-6 shadow-card md:justify-self-end">
+            <img src={logoFull.url} alt="TechBridge Consulting — Your Bridge to Technology, Impact, and Success. Minneapolis, MN." className="w-64 sm:w-72 md:w-80" />
           </div>
         </div>
       </section>
