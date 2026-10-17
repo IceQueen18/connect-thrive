@@ -12,8 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ComplianceRouteImport } from './routes/compliance'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
+import { Route as SamplesIndexRouteImport } from './routes/samples.index'
+import { Route as SamplesIdRouteImport } from './routes/samples.$id'
 import { Route as AuthenticatedAssessNewRouteImport } from './routes/_authenticated/assess.new'
 import { Route as AuthenticatedNeedsIndexRouteImport } from './routes/_authenticated/needs.index'
 import { Route as AuthenticatedNeedsIdRouteImport } from './routes/_authenticated/needs.$id'
@@ -33,6 +36,11 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ComplianceRoute = ComplianceRouteImport.update({
+  id: '/compliance',
+  path: '/compliance',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -42,6 +50,16 @@ const AuthenticatedOnboardingRoute = AuthenticatedOnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
   getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const SamplesIndexRoute = SamplesIndexRouteImport.update({
+  id: '/samples/',
+  path: '/samples/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SamplesIdRoute = SamplesIdRouteImport.update({
+  id: '/samples/$id',
+  path: '/samples/$id',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAssessNewRoute = AuthenticatedAssessNewRouteImport.update({
   id: '/assess/new',
@@ -67,8 +85,11 @@ const AuthenticatedProjectsIdRoute = AuthenticatedProjectsIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/compliance': typeof ComplianceRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/samples/$id': typeof SamplesIdRoute
+  '/samples/': typeof SamplesIndexRoute
   '/assess/new': typeof AuthenticatedAssessNewRoute
   '/needs/$id': typeof AuthenticatedNeedsIdRoute
   '/projects/$id': typeof AuthenticatedProjectsIdRoute
@@ -77,8 +98,11 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/compliance': typeof ComplianceRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/samples/$id': typeof SamplesIdRoute
+  '/samples': typeof SamplesIndexRoute
   '/assess/new': typeof AuthenticatedAssessNewRoute
   '/needs/$id': typeof AuthenticatedNeedsIdRoute
   '/projects/$id': typeof AuthenticatedProjectsIdRoute
@@ -89,8 +113,11 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
+  '/compliance': typeof ComplianceRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
+  '/samples/$id': typeof SamplesIdRoute
+  '/samples/': typeof SamplesIndexRoute
   '/_authenticated/assess/new': typeof AuthenticatedAssessNewRoute
   '/_authenticated/needs/$id': typeof AuthenticatedNeedsIdRoute
   '/_authenticated/projects/$id': typeof AuthenticatedProjectsIdRoute
@@ -101,8 +128,11 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/auth'
+    | '/compliance'
     | '/dashboard'
     | '/onboarding'
+    | '/samples/$id'
+    | '/samples/'
     | '/assess/new'
     | '/needs/$id'
     | '/projects/$id'
@@ -111,8 +141,11 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/auth'
+    | '/compliance'
     | '/dashboard'
     | '/onboarding'
+    | '/samples/$id'
+    | '/samples'
     | '/assess/new'
     | '/needs/$id'
     | '/projects/$id'
@@ -122,8 +155,11 @@ export interface FileRouteTypes {
     | '/'
     | '/_authenticated'
     | '/auth'
+    | '/compliance'
     | '/_authenticated/dashboard'
     | '/_authenticated/onboarding'
+    | '/samples/$id'
+    | '/samples/'
     | '/_authenticated/assess/new'
     | '/_authenticated/needs/$id'
     | '/_authenticated/projects/$id'
@@ -134,6 +170,9 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AuthRoute: typeof AuthRoute
+  ComplianceRoute: typeof ComplianceRoute
+  SamplesIdRoute: typeof SamplesIdRoute
+  SamplesIndexRoute: typeof SamplesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -159,6 +198,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/compliance': {
+      id: '/compliance'
+      path: '/compliance'
+      fullPath: '/compliance'
+      preLoaderRoute: typeof ComplianceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
@@ -172,6 +218,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/onboarding'
       preLoaderRoute: typeof AuthenticatedOnboardingRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/samples/': {
+      id: '/samples/'
+      path: '/samples'
+      fullPath: '/samples/'
+      preLoaderRoute: typeof SamplesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/samples/$id': {
+      id: '/samples/$id'
+      path: '/samples/$id'
+      fullPath: '/samples/$id'
+      preLoaderRoute: typeof SamplesIdRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_authenticated/assess/new': {
       id: '/_authenticated/assess/new'
@@ -229,6 +289,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
+  ComplianceRoute: ComplianceRoute,
+  SamplesIdRoute: SamplesIdRoute,
+  SamplesIndexRoute: SamplesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

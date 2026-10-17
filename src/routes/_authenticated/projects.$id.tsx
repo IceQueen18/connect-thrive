@@ -13,7 +13,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const Route = createFileRoute("/_authenticated/projects/$id")({
-  head: () => ({ meta: [{ title: "Handoff workspace — TechBridge Consulting" }, { name: "description", content: "Implementation documentation, handoff checklist and knowledge base." }] }),
+  head: () => ({ meta: [{ title: "Handoff workspace — TechBridge Consulting" }, { name: "description", content: "Implementation documentation, handoff checklist and knowledge base." }, { property: "og:title", content: "Handoff workspace — TechBridge Consulting" }, { property: "og:description", content: "Implementation documentation, handoff checklist and knowledge base." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
   component: ProjectPage,
 });
 

@@ -6,7 +6,7 @@ import { BUDGETS, NEED_CATEGORIES, TIMELINES, type Answers } from "@/lib/assessm
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/needs/")({
-  head: () => ({ meta: [{ title: "Needs board — TechBridge Consulting" }, { name: "description", content: "Published technology needs open for proposals." }] }),
+  head: () => ({ meta: [{ title: "Needs board — TechBridge Consulting" }, { name: "description", content: "Published technology needs open for proposals." }, { property: "og:title", content: "Needs board — TechBridge Consulting" }, { property: "og:description", content: "Published technology needs open for proposals." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
   component: NeedsBoard,
 });
 

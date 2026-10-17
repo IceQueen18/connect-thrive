@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ClipboardList, Trophy, BookOpenCheck } from "lucide-react";
+import { ClipboardList, Trophy, BookOpenCheck, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
@@ -33,8 +33,10 @@ function Index() {
         <div className="mx-auto max-w-6xl px-4 pb-24 pt-16">
           <h1 className="max-w-3xl text-5xl font-semibold leading-tight md:text-6xl">Technology help that's scoped right and stays working.</h1>
           <p className="mt-6 max-w-xl text-lg opacity-90">Communities and organizations define what they need. Providers compete to solve it. Everyone signs off on the handoff.</p>
-          <div className="mt-8 flex gap-3">
+          <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild size="lg" variant="secondary"><Link to="/auth">Get started</Link></Button>
+            <Button asChild size="lg" variant="secondary"><Link to="/samples">Explore sample projects</Link></Button>
+            <Button asChild size="lg" variant="secondary"><Link to="/compliance"><ShieldCheck aria-hidden="true" />AI &amp; Data Compliance</Link></Button>
           </div>
         </div>
       </section>

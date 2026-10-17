@@ -14,3 +14,5 @@
 - Proposals are inserted only by the `submitProposal` server function (no client INSERT grant) so the automatic fit score can't be forged.
 - Roles live in `public.user_roles`; users may self-assign only `organization` or `business` once; `admin` is granted manually.
 - A DB trigger on `projects` restricts each party to its own confirmation, clears confirmations on content edits, and marks the assessment completed when both confirm.
+- Fictional showcase records live in a separate browser-safe fixture module and public sample route; never insert fake account-owned records into live tables, so examples cannot impersonate users or affect real work.
+- Compliance content lives on a public standalone route linked from home; distinguish current behavior from proposed safeguards so policy text never implies unimplemented protections.
