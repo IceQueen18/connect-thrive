@@ -23,3 +23,10 @@
 - [x] Verify the logo loads, stays readable, and does not clip on desktop and phone, and that the tab icon resolves (no browser errors; phone layout clean). Signed-in header remains unverified until an account exists.
 - [x] Present the logo as a circle: round badges on the home page, sign-in page, and both public headers, plus a round tab icon, each checked for legibility at its display size (no browser errors; build OK).
 - [x] Remove the light square panel behind the logo so the round badge sits directly on the page (badge carries its own white circle; desktop and phone checked, no browser errors; build OK).
+
+# Zero-budget volunteer showcase
+- [x] Add "Volunteer (pro bono)" as a provider type in the business assessment.
+- [x] Add two no-budget organizations (Westside Senior Center, Lakeside Family Shelter) with volunteer-driven sample projects: one completed pro bono handoff and one published request awaiting the organization's pick.
+- [x] Add two volunteer providers (Ruth Okafor, Dan Whitfield), label volunteers distinctly from contractors, and show "Pro bono — no charge" for zero-cost proposals.
+- [x] Generate the six sample documents for the completed volunteer handoff and extend the attachment tests.
+- [x] Verify with tests, typecheck, and desktop/mobile browsing.
