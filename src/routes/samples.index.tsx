@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Building2, Users, ClipboardList, CheckCircle2 } from "lucide-react";
-import { sampleAssessments, sampleOrganizations, sampleContractors, sampleStageLabel } from "@/lib/samples";
+import { sampleAssessments, sampleOrganizations, sampleContractors, sampleStageLabel, fundingLabel, isZeroBudget } from "@/lib/samples";
 import { stageIndex, readinessScore, NEED_CATEGORIES } from "@/lib/assessment";
 import { SampleShell } from "@/components/SampleShell";
 import { StageBar } from "@/components/StageBar";
@@ -25,10 +25,12 @@ function Samples() {
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("all");
   const [organization, setOrganization] = useState("all");
+  const [funding, setFunding] = useState("all");
   const rows = sampleAssessments.filter((a) => {
     const org = sampleOrganizations.find((o) => o.id === a.organizationId);
     return (organization === "all" || a.organizationId === organization) &&
       (status === "all" || sampleStageLabel(a) === status) &&
+      (funding === "all" || (funding === "probono" ? isZeroBudget(a) : !isZeroBudget(a))) &&
       `${a.title} ${org?.name} ${a.answers["problem"]}`.toLowerCase().includes(search.toLowerCase());
   });
   const stats = [
