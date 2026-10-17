@@ -1,0 +1,8 @@
+# FICTIONAL SAMPLE ONLY - TechBridge Consulting showcase document
+article_id,title,symptom,first_step,escalate_to
+KB-01,Tablet will not connect,Wi-Fi icon shows offline,Move the tablet near the router and retry,Program coordinator
+KB-02,Participant checked in twice,Two records for one name,Flag both records; do not delete,Program coordinator
+KB-03,Ride list missing a driver,Pickup time saved without a driver,Reopen the entry and add the driver name,Ride desk volunteer
+KB-04,Forgot tablet sign-in,Account locked after three tries,"Wait fifteen minutes, then retry once",Program coordinator
+KB-05,Wrong program open,Entries filed under yesterday,"Check the date, re-record on the correct day",Program coordinator
+KB-06,Large text turned off,Buttons look small,Open settings and re-enable large text,Program coordinator

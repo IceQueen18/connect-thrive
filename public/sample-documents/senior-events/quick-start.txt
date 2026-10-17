@@ -1,0 +1,18 @@
+FICTIONAL SAMPLE ONLY - TechBridge Consulting showcase document
+
+Westside Senior Center - Attendance & Ride Log
+Quick-start guide for staff and volunteers
+
+Every shift:
+1. Open the attendance log on the front-desk tablet and sign in with your
+   center account.
+2. Select today's program and record each participant with the large-text
+   check-in buttons.
+3. For rides, add the pickup time and driver name before 10 a.m.
+4. At the end of the shift, tap "Done" so the coordinator can see totals.
+
+Never enter participant addresses, health notes or emergency contact
+details in the log. Keep entries to names and attendance only.
+
+If the tablet will not connect, use the paper backup sheet at the desk and
+tell the program coordinator the same day.
